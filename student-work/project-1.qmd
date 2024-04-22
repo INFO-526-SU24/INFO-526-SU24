@@ -1,0 +1,79 @@
+---
+title: "Project 1 Student Examples"
+---
+
+The assignment for Project 1 can be found [here](/project/project-1.html).
+
+Below are projects the teams produced.
+
+::: project
+[**Unraveling Tornado Trends**](https://info526-dataviz.github.io/project-01-Aes-thetics-Squad/) by Aes-thetics-Squad
+
+------------------------------------------------------------------------
+
+[![Tornado mortality over time.](images/project-1/aes-thetics-squad-tornMort.png){width="640"}](https://info526-dataviz.github.io/project-01-Aes-thetics-Squad/)
+
+------------------------------------------------------------------------
+
+Explore how the magnitude and fatality numbers of tornadoes has changed in the U.S. over time. [*Read more.*](https://info526-dataviz.github.io/project-01-Aes-thetics-Squad/)
+:::
+
+::: project
+[**USA Weather Forecast Accuracy Analysis**](https://info526-dataviz.github.io/project-01-ggplotGurus/) by ggplotGurus
+
+------------------------------------------------------------------------
+
+[![Weather prediction error in major cities](images/project-1/ggplotGurus-weatherAccuracy.png){width="640"}](https://info526-dataviz.github.io/project-01-ggplotGurus/)
+
+------------------------------------------------------------------------
+
+Delves into the degree in which weather predictions are incorrect in the U.S. [*Read more.*](https://info526-dataviz.github.io/project-01-ggplotGurus/)
+:::
+
+::: project
+[**From Mild to Wild**](https://info526-dataviz.github.io/project-01-ScatterPlot-Sorcerers/) by ScatterPlot-Sorcerers
+
+------------------------------------------------------------------------
+
+[![Occurrences of Repeated Sauces](images/project-1/scatter-sorcerers-scoville.png){width="640"}](https://info526-dataviz.github.io/project-01-ScatterPlot-Sorcerers/)
+
+------------------------------------------------------------------------
+
+Highlight trends in *Hot Ones* sauce Scoville scores and contentant failure rates, and the occurrence of repeated sauces. [*Read more.*](https://info526-dataviz.github.io/project-01-ScatterPlot-Sorcerers/)
+:::
+
+::: project
+[**Alien Encounters**](https://info526-dataviz.github.io/project-01-DataInk-Drinkers/) by DataInk Drinkers
+
+------------------------------------------------------------------------
+
+[![Sighting UFOs at distinct day-parts](images/project-1/dataInk-Drinkers-ufoEncounters.png){width="640"}](https://info526-dataviz.github.io/project-01-DataInk-Drinkers/)
+
+------------------------------------------------------------------------
+
+Explore trends in UFO sightings both spatially (across the globe) and temporally (through years and time of day). [*Read more.*](https://info526-dataviz.github.io/project-01-DataInk-Drinkers/)
+:::
+
+::: project
+[**Paws N' Patterns 🐾**](https://info526-dataviz.github.io/project-01-R-tisans-of-Visuals/) by R-tisans of Visual
+
+------------------------------------------------------------------------
+
+[![How good are loner cats at hunting (by sex)](images/project-1/r-tisans-of-visuals-catHuntingSex.png){width="640"}](https://info526-dataviz.github.io/project-01-R-tisans-of-Visuals/)
+
+------------------------------------------------------------------------
+
+Explore how house cat solitary lifestyle, sex, and reproductive status influences hunting patterns. [*Read more.*](https://info526-dataviz.github.io/project-01-R-tisans-of-Visuals/)
+:::
+
+::: project
+[**Forests in Transition: Visualizing Global Deforestation**](https://info526-dataviz.github.io/project-01-The-Plotting-Pandas/) by The Plotting Pandas
+
+------------------------------------------------------------------------
+
+[![Net Forest Conversion by Country in 2010](images/project-1/plotting-pandas-deforestation.png){width="640"}](https://info526-dataviz.github.io/project-01-The-Plotting-Pandas/)
+
+------------------------------------------------------------------------
+
+Explore trends in global deforestation, such as soy bean agriculture in Brazil. [*Read more.*](https://info526-dataviz.github.io/project-01-The-Plotting-Pandas/)
+:::

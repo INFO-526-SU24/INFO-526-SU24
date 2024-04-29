@@ -18,7 +18,8 @@ editor_options:
 
 ## Announcements
 
--   Project proposals for peer review due Wednesday, November 8th at 3pm
+-   HW 4 due Wednesday, April 3rd
+-   Project 2 proposals for peer review due Wednesday, April 3rd -- start working on them today
 
 ## Large data advice
 

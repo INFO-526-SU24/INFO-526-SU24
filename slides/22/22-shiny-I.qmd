@@ -18,8 +18,9 @@ editor_options:
 
 ## Announcements
 
--   Peer evals are next week (survey to be announced soon)
--   HW 06 is due Dec 6th, 11:59pm
+-   Peer evals will be in two-weeks (survey to be announced soon)
+-   HW 06 is due April 29th, 11:59pm
+    -   To opt-out, submit the GitHub issue before the deadline
 
 ## Setup {.smaller}
 

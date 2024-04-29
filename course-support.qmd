@@ -4,17 +4,13 @@ title: "Course support"
 
 Most of you will need help at some point and we want to make sure you can identify when that is without getting too frustrated and feel comfortable seeking help.
 
-## Lectures
-
-If you have a question during lecture, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
-
 ## Office hours
 
 The teaching team is here to help you be successful in the course. You are encouraged to attend office hours during the times posted on the home page to ask questions about the course content and assignments. A lot of questions are most effectively answered in-person, so office hours are a valuable resource. I encourage each and every one of you to take advantage of this resource! Make a pledge to stop by office hours at least once during the first three weeks of class. If you truly have no questions to ask, just stop by and say hi and introduce yourself. You can find a list of everyone's office hours [here](/course-team.html).
 
 ## Slack
 
-Have a question that can't wait for office hours? Prefer to write out your question in detail rather than asking in person? The course Slack is the best venue for these! There is a chance another student has already asked a similar question, so please check the other posts on Slack before asking a new question. If you know the answer to a question that is posted, I encourage you to respond!
+Have a question that can't wait for office hours? Prefer to write out your question in detail rather than asking in person? The [course Slack](https://info526summer2024.slack.com/) is the best venue for these! There is a chance another student has already asked a similar question, so please check the other posts on Slack before asking a new question. If you know the answer to a question that is posted, I encourage you to respond!
 
 ## Email
 
@@ -24,7 +20,7 @@ If there is a question that's not appropriate for the public forum, you are welc
 
 ## How to Ask For Help
 
-We\'ll see in this course that a key skill that you should develop as a data scientist is the ability to find solutions to problems. Knowing how to get help is part of that skill.
+We'll see in this course that a key skill that you should develop as a data scientist is the ability to find solutions to problems. Knowing how to get help is part of that skill.
 
 ### Before you ask for help:
 
@@ -32,25 +28,25 @@ We\'ll see in this course that a key skill that you should develop as a data sci
 
 -   **Check loaded packages.** You also get errors like `Error in data %>% summary() : could not find function “%>%”` when you failed to load a package.
 
--   **Read the error message.** Don\'t ignore what R is telling you. Be aware that red text that appears in your console is not alwayws indication of errors. Sometimes it\'s just a warning.
+-   **Read the error message.** Don't ignore what R is telling you. Be aware that red text that appears in your console is not alwayws indication of errors. Sometimes it's just a warning.
 
--   **Google is your friend.** Copy and paste the exact error message on a Google search. (this step also includes **read the documentation** on the package you\'re trying to use).
+-   **Google is your friend.** Copy and paste the exact error message on a Google search. (this step also includes **read the documentation** on the package you're trying to use).
 
 -   If you are still stuck, you an always try **rubber duck debugging**. Describe the problem aloud, explaining it line-by-line, to a rubber duck or another person (who might not have any experience with programming of data science). This is also a good preparation step to asking other people for help (next section).
 
 ### Ask other people for help
 
-Like mentioned before, you should ask your peers for help before you ask your instructor. Relying on a single person to solve all of your problems is dangerous, because that person won\'t be available throughout your career as a data scientist.
+Like mentioned before, you should ask your peers for help before you ask your instructor. Relying on a single person to solve all of your problems is dangerous, because that person won't be available throughout your career as a data scientist.
 
--   Check **our Slack** to see if someone else has asked a question similar to yours, and whether there\'s a solution posted for it.
+-   Check **our Slack** to see if someone else has asked a question similar to yours, and whether there's a solution posted for it.
 
--   **Be precise and informative**. The more context you can provide about what you\'re trying to do and what errors you\'re getting, the better. Also describe the steps you took to try to solve the problem yourself.
+-   **Be precise and informative**. The more context you can provide about what you're trying to do and what errors you're getting, the better. Also describe the steps you took to try to solve the problem yourself.
 
 ### List of resources
 
 -   [Getting Help with R](https://www.r-project.org/help.html)
 
--   [Roger Peng\'s How To Get Help video](https://www.youtube.com/watch?v=ZFaWxxzouCY&feature=youtu.be)
+-   [Roger Peng's How To Get Help video](https://www.youtube.com/watch?v=ZFaWxxzouCY&feature=youtu.be)
 
 -   [Rubber Duck Debugging](https://rubberduckdebugging.com/)
 

@@ -18,8 +18,8 @@ editor_options:
 
 ## Announcements
 
--   HW 4 due Friday, November 10th
--   Project 2 proposals for peer review due Wednesday, November 8th -- start working on them today
+-   HW 4 due Wednesday, April 3rd
+-   Project 2 proposals for peer review due Wednesday, April 3rd -- start working on them today
 
 ## Note
 

@@ -20,9 +20,9 @@ editor_options:
 
 -   Course and TA evaluations
     -   If we can get to \>=90% participation for both, each person gets +5 points on their lowest (not dropped) homework score.
-    -   Current participation rate: TA evals 8.5% and course evals 5.9%.
--   [Project 1s are posted on the course website](https://vizdata.org/student-work/project-1.html). I will remove the scores from the repos after the semester ends.
--   Also posted are your [thank you cards](https://vizdata.org/student-work/thank-you.html) and [ugly plots](https://vizdata.org/student-work/ugly-plot.html)!
+-   RQ 06 is due Wed April 24, 11:59pm.
+-   HW 06 is due Mon April 29, 11:59pm.
+-   Project 02 Code Peer-Review is May 01 in class.
 
 # From last time
 
@@ -69,4 +69,4 @@ Highlights:
 
 ## Reference
 
-The code for the app can be found [here](https://github.com/INFO526-DataViz/shiny-ex-2).
+The code for the app can be found [here](https://github.com/INFO-526-S24/shiny-ex-2).

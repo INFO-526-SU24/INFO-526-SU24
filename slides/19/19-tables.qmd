@@ -18,8 +18,9 @@ editor_options:
 
 ## Announcements
 
--   HW grading
--   Final Project Proposals are graded
+-   RQ 5 Due Wed, April 10th
+-   Laura Dozal (TA) will be Lecturing April 10th on Network Visualizations
+-   Final Project Proposals will be graded by Wed, April 10th
 
 ## Setup {.smaller}
 
@@ -320,7 +321,8 @@ Livecoding: Recreate this table of Bachelor's degrees awarded in 2015.
 :::
 
 ::: {.column width="60%"}
-```{r ref.label = "degrees-2015-table", echo = FALSE}
+```{r ref.label = "degrees-2015-table", echo = TRUE}
+#| code-fold: true
 ```
 :::
 :::
@@ -449,7 +451,9 @@ Livecoding: Recreate this table of popular Bachelor's degrees awarded over time.
 
 <br>
 
-```{r sparklines, echo = FALSE}
+```{r sparklines}
+#| code-fold: true
+#| code-summary: "Sparklines"
 plot_spark <- function(df){
   ggplot(df, aes(x = year, y = perc)) +
     geom_line(linewidth = 20) +
@@ -503,8 +507,9 @@ Your turn: Add **color** to the previous table.
 
 <br>
 
-```{r ref.label = "sparklines-color", echo = FALSE}
-
+```{r ref.label = "sparklines-color"}
+#| code-fold: true
+#| code-summary: "Colored Sparklines"
 ```
 
 ```{r echo = FALSE}

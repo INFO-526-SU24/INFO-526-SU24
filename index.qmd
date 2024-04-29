@@ -18,7 +18,7 @@ library(googlesheets4)
 library(gt)
 library(tidyverse)
 gs4_deauth()
-d <- read_sheet("https://docs.google.com/spreadsheets/d/1aaQ8IV5OSQ7ADeZ--BeFrNaaLA8HWs3VGu117_7e7Qw/edit?usp=sharings")
+d <- read_sheet("https://docs.google.com/spreadsheets/d/1jTwDOMWBSGnWu5eq43S3sHzXECVqtCt5qM9vjvDyNFA/edit?usp=sharing")
 ```
 
 ```{r}
@@ -30,7 +30,7 @@ d |>
   ) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
-  sub_missing(columns = c(week, what, topic, prepare, due), missing_text = "") |>
+  sub_missing(columns = c(date, week, what, topic, prepare, due), missing_text = "") |>
   cols_align(
     align = "center", 
     columns = c(week)
@@ -54,7 +54,7 @@ d |>
     )
   ) |>
   fmt_markdown(
-    columns = c(topic, prepare, due)
+    columns = c(what, topic, prepare, due)
   ) |>
   cols_width(
     week ~ px(20),

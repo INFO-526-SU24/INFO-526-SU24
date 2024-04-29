@@ -20,16 +20,16 @@ editor_options:
 
 **Remainder of the semester:**
 
--   Lectures (lab time):
+-   Lectures ("lab" time):
 
-    -   This week: Work on projects
-    -   Next week: Project peer code review + fill out peer evals
+    -   This and next week: Work on projects
+    -   In two-weeks: Project peer code review + fill out peer evals
 
 -   HW: HW 6 is optional, you'll need to explicitly indicate if you're opting out (only if you have done HWs 1-5)
 
--   Project: Presentations Tue, Dec 12, 3:30pm - 5:30pm (all team members must be there!)
+-   Project: Presentations Mon, May 06, 10:30am - 12:30pm (all team members must be there!)
 
-    -   You can opt into presenting Dec 06
+    -   You can opt into presenting May 01
 
 ## Setup {.smaller}
 

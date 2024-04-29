@@ -14,6 +14,13 @@ editor_options:
   chunk_output_type: console
 ---
 
+# Warm up
+
+## Announcements
+
+-   HW 4 due Wednesday, April 3rd
+-   Project 2 proposals for peer review due Wednesday, April 3rd
+
 ## Setup {.smaller}
 
 ```{r}
@@ -236,7 +243,7 @@ roads <- read_sf("data/easter_island/ei_roads.gpkg")
 points <- read_sf("data/easter_island/ei_points.gpkg")
 ```
 
-## Layering with ggplot2
+## Layering with ggplot2 {.smaller}
 
 ::: panel-tabset
 ## Plot

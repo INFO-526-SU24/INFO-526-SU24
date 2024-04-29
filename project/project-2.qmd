@@ -44,21 +44,21 @@ Most importantly, be prepared to brainstorm a bunch of ideas and discard them un
 
 -   Week 3 of project (week of Apr 01): Finalize your project proposal + Conduct peer review on project proposals
 
--   Week 5 of project (week of Apr 08): Continue working on your project, and optionally, submit in an updated version of your proposal.
+-   Week 4 of project (week of Apr 08): Continue working on your project, and optionally, submit in an updated version of your proposal.
 
--   Week 6 of project (week of Apr 15): Continue working on your project, incorporating feedback from proposals.
+-   Week 5 of project (week of Apr 15): Continue working on your project, incorporating feedback from proposals.
 
--   Week 7 of project (week of Apr 22): Continue working on your project.
+-   Week 6 of project (week of Apr 22): Continue working on your project.
 
--   Week 8 of project (week of Apr 29): Conduct peer code review.
+-   Week 7 of project (week of Apr 29): Conduct peer code review.
 
--   Week 9 of project (week of May 06 - finals week): Present projects and turn in final write-up.
+-   Week 8 of project (week of May 06 - finals week): Present projects and turn in final write-up.
 
 ## Due dates
 
--   Proposals for peer review: due Mon, Apr 01 at 1pm.
--   Peer review of proposals: Mon, Apr 01 in class
--   Revised proposals for instructor review: due Fri, Apr 05 at 5pm.
+-   Proposals for peer review: due Wed, Apr 03 at 11am.
+-   Peer review of proposals: Wed, Apr 03 in class
+-   Revised proposals for instructor review: due Mon, Apr 08 at 5pm.
 -   Peer review of code: Wed, May 01 in class
 -   Write-up and presentation: due Mon, May 06, 10:30am - 12:30pm (scheduled final date)
 
@@ -77,6 +77,16 @@ Your proposal should include:
     -   If answering a particular research question, the question itself and the reason why you chose this question.
 
 -   A weekly "plan of attack" outlining your steps to complete your project and including the team member(s) assigned to that task.
+
+    -   This should be in the following form:
+
+        | Task Name | Status | Assignee | Due | Priority | Summary |
+        |-----------|--------|----------|-----|----------|---------|
+        |           |        |          |     | Low      |         |
+        |           |        |          |     | Moderate |         |
+        |           |        |          |     | High     |         |
+
+    -   **Note** that this is a [living document]{.underline} and should be updated at minimum once a week.
 
 -   The final organization of your project repository. This means describing the project organization in your proposal as well as implementing that organization in your repo. Create any folders needed and place a `README.md` in each folder explaining what goes in there.
 
@@ -98,27 +108,25 @@ Once you receive feedback from your peers, you should address them. You should d
 
 #### Peer review assignments
 
-The peer review assignments for **proposal peer reviews** are as follows (TBD):
+The peer review assignments for **proposal peer reviews** are as follows:
 
 ```{r}
 #| echo: false
 #| message: false
-#| eval: false
+#| eval: true
 
 p2_pr <- read_csv("project-2-peer-review.csv")
 gt(p2_pr)
 ```
 
-The peer review assignments for **code peer reviews** are as follows (TBD):
+The peer review assignments for **code peer reviews** are as follows:
 
 ```{r}
 #| echo: false
 #| message: false
-#| eval: false
+#| eval: true
 
-p2_pr |>
-  select(-reviewee_2) |>
-  gt()
+gt(p2_pr)
 ```
 
 ### Write-up
@@ -146,7 +154,7 @@ At a minimum each project should have an `index.qmd`. If your project is analyzi
 ## Grading
 
 +----------------------------------------------+--------------------------------------------------+
-| Total                                        | 100 pts                                          |
+| Total                                        | 110 pts                                          |
 +==============================================+==================================================+
 | Proposal[^2]                                 | 10 pts                                           |
 +----------------------------------------------+--------------------------------------------------+
@@ -158,7 +166,7 @@ At a minimum each project should have an `index.qmd`. If your project is analyzi
 +----------------------------------------------+--------------------------------------------------+
 | Reproducibility, style, and organization[^5] | 10 pts                                           |
 +----------------------------------------------+--------------------------------------------------+
-| Within team peer evaluation[^6]              | 10 pts                                           |
+| Within team peer evaluation[^6]              | 20 pts                                           |
 +----------------------------------------------+--------------------------------------------------+
 | Between team peer evaluation[^7]             | 10 pts                                           |
 +----------------------------------------------+--------------------------------------------------+

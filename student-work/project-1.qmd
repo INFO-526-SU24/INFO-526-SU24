@@ -7,73 +7,205 @@ The assignment for Project 1 can be found [here](/project/project-1.html).
 Below are projects the teams produced.
 
 ::: project
-[**Unraveling Tornado Trends**](https://info526-dataviz.github.io/project-01-Aes-thetics-Squad/) by Aes-thetics-Squad
+**Analyzing Trends in the House of Representatives** by The Power of the Voters
 
 ------------------------------------------------------------------------
 
-[![Tornado mortality over time.](images/project-1/aes-thetics-squad-tornMort.png){width="640"}](https://info526-dataviz.github.io/project-01-Aes-thetics-Squad/)
+::: panel-tabset
+## 2016
+
+![](images/project-1/power-of-the-voters-1.png){fig-align="center"}
+
+## 2018
+
+![](images/project-1/power-of-the-voters-2.png){fig-align="center"}
+
+## 2020
+
+![](images/project-1/power-of-the-voters-3.png){fig-align="center"}
+:::
 
 ------------------------------------------------------------------------
 
-Explore how the magnitude and fatality numbers of tornadoes has changed in the U.S. over time. [*Read more.*](https://info526-dataviz.github.io/project-01-Aes-thetics-Squad/)
+Explore how U.S. House of Representatives voting changes over time
 :::
 
 ::: project
-[**USA Weather Forecast Accuracy Analysis**](https://info526-dataviz.github.io/project-01-ggplotGurus/) by ggplotGurus
+**Exploring Patterns and Associations in UFO Sightings Data** by Fight Club
 
 ------------------------------------------------------------------------
 
-[![Weather prediction error in major cities](images/project-1/ggplotGurus-weatherAccuracy.png){width="640"}](https://info526-dataviz.github.io/project-01-ggplotGurus/)
+::: panel-tabset
+## Geographic Distribution
+
+![Geographical representation of world sightings](images/project-1/fight-club-1.png){fig-align="center"}
+
+## Seasonal Sightings
+
+![Seasonally separated sightings over time](images/project-1/fight-club-2.png){fig-align="center"}
+:::
 
 ------------------------------------------------------------------------
 
-Delves into the degree in which weather predictions are incorrect in the U.S. [*Read more.*](https://info526-dataviz.github.io/project-01-ggplotGurus/)
+Delves into UFO sightings across the world
 :::
 
 ::: project
-[**From Mild to Wild**](https://info526-dataviz.github.io/project-01-ScatterPlot-Sorcerers/) by ScatterPlot-Sorcerers
+**Childcare Cost Analysis** by InsightSquad
 
 ------------------------------------------------------------------------
 
-[![Occurrences of Repeated Sauces](images/project-1/scatter-sorcerers-scoville.png){width="640"}](https://info526-dataviz.github.io/project-01-ScatterPlot-Sorcerers/)
+::: panel-tabset
+## Family Poverty
+
+![Family poverty (%) vs unemployment rate](images/project-1/insight-squad-1.png){fig-align="center"}
+
+## Individual Poverty
+
+![Individual poverty vs unemployment rate](images/project-1/insight-squad-2.png){fig-align="center"}
+:::
 
 ------------------------------------------------------------------------
 
-Highlight trends in *Hot Ones* sauce Scoville scores and contentant failure rates, and the occurrence of repeated sauces. [*Read more.*](https://info526-dataviz.github.io/project-01-ScatterPlot-Sorcerers/)
+Highlight trends in *Hot Ones* sauce Scoville scores and contentant failure rates, and the occurrence of repeated sauces.
 :::
 
 ::: project
-[**Alien Encounters**](https://info526-dataviz.github.io/project-01-DataInk-Drinkers/) by DataInk Drinkers
+**Game Metrics** by Wacky Wednesday
 
 ------------------------------------------------------------------------
 
-[![Sighting UFOs at distinct day-parts](images/project-1/dataInk-Drinkers-ufoEncounters.png){width="640"}](https://info526-dataviz.github.io/project-01-DataInk-Drinkers/)
+::: panel-tabset
+## Correlation
+
+![Correlation between goals at half-time vs full-time](images/project-1/wacky-wednesday-1.png){fig-align="center"}
+
+## Penalties
+
+![English football game penalties](images/project-1/wacky-wednesday-2.png){fig-align="center"}
+:::
 
 ------------------------------------------------------------------------
 
-Explore trends in UFO sightings both spatially (across the globe) and temporally (through years and time of day). [*Read more.*](https://info526-dataviz.github.io/project-01-DataInk-Drinkers/)
+Decoding Premier League Outcomes Through Visual Analysis and Data Exploration
 :::
 
 ::: project
-[**Paws N' Patterns 🐾**](https://info526-dataviz.github.io/project-01-R-tisans-of-Visuals/) by R-tisans of Visual
+**A Data-Driven Investigation into Global UFO Sightings** by Plot Crafters
 
 ------------------------------------------------------------------------
 
-[![How good are loner cats at hunting (by sex)](images/project-1/r-tisans-of-visuals-catHuntingSex.png){width="640"}](https://info526-dataviz.github.io/project-01-R-tisans-of-Visuals/)
+::: panel-tabset
+## Global Heatmap
+
+![Heatmap of global UFO sightings](images/project-1/plot-crafters-1.png){fig-align="center"}
+
+## Daily Sightings
+
+![UFO sightings throughout the day](images/project-1/plot-crafters-2.png){fig-align="center"}
+:::
 
 ------------------------------------------------------------------------
 
-Explore how house cat solitary lifestyle, sex, and reproductive status influences hunting patterns. [*Read more.*](https://info526-dataviz.github.io/project-01-R-tisans-of-Visuals/)
+Explore trends in UFO sightings both spatially (across the globe) and temporally (through years and time of day).
 :::
 
 ::: project
-[**Forests in Transition: Visualizing Global Deforestation**](https://info526-dataviz.github.io/project-01-The-Plotting-Pandas/) by The Plotting Pandas
+**Diwali Sales Trend Analysis** by Diwali Dhamaka
 
 ------------------------------------------------------------------------
 
-[![Net Forest Conversion by Country in 2010](images/project-1/plotting-pandas-deforestation.png){width="640"}](https://info526-dataviz.github.io/project-01-The-Plotting-Pandas/)
+::: panel-tabset
+## Count of sales
+
+![Total count of sales type by sex](images/project-1/diwali-dhamaka-1.png){alt="Net Forest Conversion by Country in 2010" fig-align="center"}
+
+## Spending
+
+![Spending trends by age group and sex](images/project-1/diwali-dhamaka-2.png){fig-align="center"}
+:::
 
 ------------------------------------------------------------------------
 
-Explore trends in global deforestation, such as soy bean agriculture in Brazil. [*Read more.*](https://info526-dataviz.github.io/project-01-The-Plotting-Pandas/)
+Explore trends in spending during Diwali, the Indian festival of lights.
+:::
+
+::: project
+**Big Tech Stock Prices** by Crimson
+
+------------------------------------------------------------------------
+
+::: panel-tabset
+## Trends
+
+![Stock price trends over time](images/project-1/crimson-1.png){alt="Net Forest Conversion by Country in 2010" fig-align="center"}
+
+## Spending
+
+![Gain days of companies each year](images/project-1/crimson-2.gif){alt="Spending trends by age group and sex" fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+Comprehend the patterns in the stock prices of major tech companies over a 10-year period
+:::
+
+::: project
+**Insights and Visualizations for Climate Understanding** byThe Graph Crafters
+
+------------------------------------------------------------------------
+
+::: panel-tabset
+## Yearly
+
+![Yearly Temperature Deviations by Latitudinal Range](images/project-1/graph-crafters-1.png){alt="Net Forest Conversion by Country in 2010" fig-align="center"}
+
+## Spending
+
+![Hemispherical temperature anomalies by season](images/project-1/graph-crafters-2.png){alt="Spending trends by age group and sex" fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+Exploring global surface temperature anomalies
+:::
+
+::: project
+**Global Refugee Trends and Correlations** byDatatude Dynamos
+
+------------------------------------------------------------------------
+
+::: panel-tabset
+## Cumulative
+
+![Expeditious growth of the refugee population over time](images/project-1/datatude-dynamos-1.png){alt="Net Forest Conversion by Country in 2010" fig-align="center"}
+
+## Spending
+
+![Refugee populations over time with US political context](images/project-1/datatude-dynamos-2.gif){alt="Spending trends by age group and sex" fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+Analyzing the Effects of External Circumstances on Refugee Movements Between 2010 and 2022.
+:::
+
+::: project
+**Psychometric Analysis of TV Shows** byByte Coders
+
+------------------------------------------------------------------------
+
+::: panel-tabset
+## Four shows
+
+![Count of characters with Myers-Briggs personality types](images/project-1/byte-coders-1.png){alt="Net Forest Conversion by Country in 2010" fig-align="center"}
+
+## Game of Thrones
+
+![Game of Thrones Myers-Briggs personality types](images/project-1/byte-coders-2.png){alt="Spending trends by age group and sex" fig-align="center"}
+:::
+
+------------------------------------------------------------------------
+
+Analyzing the Effects of External Circumstances on Refugee Movements Between 2010 and 2022.
 :::

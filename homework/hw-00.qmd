@@ -4,7 +4,7 @@ subtitle: "Meet the toolkit"
 ---
 
 ::: callout-note
-This is **not** a graded homework assignment.
+This is **not** a graded homework assignment, but its completion is strongly recommended.
 :::
 
 The goals of this exercise are:
@@ -68,15 +68,19 @@ You can now test that the SSH authentication is working by attempting to clone a
 
 ## Frequently Asked Questions
 
-1.  **What happens if I already have an SSH key?**
+1.  **What about the HTTPS method?**
+
+    There's nothing inherently wrong with this method. In fact, I use it primarily. If you are used to and prefer this method, check out the README in the [`meet-the-toolkit` repo](https://github.com/INFO-526-SU24/meet-the-toolkit).
+
+2.  **What happens if I already have an SSH key?**
 
     Nothing bad, the `creditials` package will recognize this and just print the existing public SSH key. If you want to get rid of the existing key you will need to delete the `id_rsa` and `id_rsa.pub` files from the `.ssh` directory in your home directory.
 
-2.  **How do I protect my private key?**
+3.  **How do I protect my private key?**
 
     The private key of your key pair is saved as a file in a folder called `.ssh` in your home directory, having access to the file is equivalent to having your password (at least as far as git interactions are concerned). By default, permissions should be set such that only your user account should be able to access that file. If you would like additional security you can encrypt this key using a passphrase (i.e. password) via `credentials::ssh_update_passphrase()` which will then be required each time the key pair is used (e.g. pushing, pulling, etc.).
 
-3.  **I get an error about an unprotected private key file when trying to use git**
+4.  **I get an error about an unprotected private key file when trying to use git**
 
     If you are seeing an error message that looks like the following:
 
@@ -97,7 +101,7 @@ You can now test that the SSH authentication is working by attempting to clone a
 
     this is likely due to your system having a slightly outdated version of the `credentials` package which had a bug where the wrong permissions were applied to the key pair files. You can either fix the permissions to remove read access to anyone but yourself or update `credentials`, delete the existing keys, and start the process over. See Google for documentation on how to change permissions on your specific OS.
 
-4.  **I set this up for my container and now it won't work on stat server (or some other computer)**
+5.  **I set this up for my container and now it won't work on stat server (or some other computer)**
 
     This process, much like git configuration, must be done on each machine you intend to use, or at least each file system. Generally the recommendation is to create a new key pair for each machine you will be using, e.g. OIT container, stat server, your laptop, etc. The process is quick and GitHub supports the addition of multiple public keys.
 
@@ -107,17 +111,13 @@ You can now test that the SSH authentication is working by attempting to clone a
 
 -   Make sure you've joined the course Slack and match your Slack profile to your GitHub profile.
 
-# Visualizing US Polling Places
+# Visualizing UN Votes
 
 Clone the `meet-the-toolkit` repo by going to File \> New Project \> Version Control \> Git and pasting this repo's SSH URL in the *Repository URL* field.
 
-Once you have the repo cloned in RStudio, create a data visualization using data on this week's TidyTuesday.
+Once you have the repo cloned in RStudio, follow along with the code example, then create a data visualization using data on United Nation Voting.
 
-You can find the data description [here](https://github.com/rfordatascience/tidytuesday/blob/master/data/2024/2024-01-16/readme.md).
-
-This dataset comes from the Center for Public Integrity.
-
-Your code should go in `polling.qmd`. Render, commit, and push your progress regularly to the GitHub repository. This will be a good test for having completed the configuration from the previous part as well.
+Your code should go in `voting.qmd`. Render, commit, and push your progress regularly to the GitHub repository. This will be a good test for having completed the configuration from the previous part as well.
 
 Once you have a visualization you're happy with, provide a brief interpretation for it. This can be just a few sentences or a brief paragraph.
 

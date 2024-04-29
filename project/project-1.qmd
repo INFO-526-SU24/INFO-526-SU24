@@ -2,7 +2,7 @@
 title: "Project 1"
 ---
 
-For this project, you will be using a dataset from the TidyTuesday project. You can choose any dataset you want from the datasets released in 2023 as part of this project: <https://github.com/rfordatascience/tidytuesday/tree/master/data/2023#readme>. Your task for the project is to come up with two questions to answer, answer them with data visualizations, and write-up and present your method and findings. You will also get to peer review others' projects.
+For this project, you will be using a dataset from the TidyTuesday project. You can choose any dataset you want from the datasets released in 2024 as part of this project: <https://github.com/rfordatascience/tidytuesday/tree/master/data/2024#readme>. Your task for the project is to come up with two questions to answer, answer them with data visualizations, and write-up and present your method and findings. You will also get to peer review others' projects.
 
 ## Dataset
 
@@ -39,9 +39,24 @@ Each of the two questions you come up with should involve more than two variable
 Your proposal should include:
 
 -   A brief description of your dataset including its provenance, dimensions, etc. (Make sure to load the data and use inline code for some of this information.)
+
 -   The reason why you chose this dataset.
+
 -   The two questions you want to answer.
+
 -   A plan for answering each of the questions including the variables involved, variables to be created (if any), external data to be merged in (if any).
+
+-   A weekly "plan of attack" outlining your steps to complete your project and including the team member(s) assigned to that task.
+
+    -   This should be in the following form:
+
+        | Task Name | Status | Assignee | Due | Priority | Summary |
+        |-----------|--------|----------|-----|----------|---------|
+        |           |        |          |     | Low      |         |
+        |           |        |          |     | Moderate |         |
+        |           |        |          |     | High     |         |
+
+    -   **Note** that this is a [living document]{.underline} and should be updated at minimum once a week.
 
 ### Peer review
 
@@ -152,9 +167,9 @@ The following folders and files in your project repository:
 +------------------------------------------------------------------------+--------------------------------------------------+
 | Reproducibility, style, and organization[^5]                           | 10 pts                                           |
 +------------------------------------------------------------------------+--------------------------------------------------+
-| [Within team peer evaluation](https://forms.gle/AHBjXu68mhKs3XbJ7)[^6] | 10 pts                                           |
+| [Within team peer evaluation](https://forms.gle/AHBjXu68mhKs3XbJ7)[^6] | 15 pts                                           |
 +------------------------------------------------------------------------+--------------------------------------------------+
-| Between team peer evaluation[^7]                                       | 10 pts                                           |
+| Between team peer evaluation[^7]                                       | 5 pts                                            |
 +------------------------------------------------------------------------+--------------------------------------------------+
 
 [^2]: Your proposal score will also take into consideration how much you've improved your proposal based on peer feedback.

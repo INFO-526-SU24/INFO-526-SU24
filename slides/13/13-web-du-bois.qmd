@@ -46,23 +46,15 @@ editor_options:
 
 ## Project 2 - all the details
 
-::: large
-<https://datavizaz.org/project/project-2.html>
-:::
+<br>
+
+#### <https://datavizaz.org/project/project-2.html>
 
 <br>
 
 ::: callout-tip
 Brainstorm a bunch of ideas and discard them until you settle on a topic that everyone in the team is happy with and feels like a good choice for showcasing what you've learned in the class and how you can use that to learn something new and implement for your project.
 :::
-
-## Project 2 - inspiration
-
--   animatedata - [Formula 1 racing](https://charts.animateddata.co.uk/f1/)
-
--   Nicole Rennie - [Life Expectancy](https://github.com/nrennie/Significance/tree/main/Were_not_getting_any_younger_Or_should_that_be_older)
-
--   Nicole Rennie - [Generative Art](https://github.com/nrennie/nrennie_aRt)
 
 # W.E.B. Du Bois
 
@@ -146,7 +138,7 @@ For each of the following visualizations: Review the plot and provide an interpr
 
 !["City and Rural Population. 1890" 1900, via Library of Congress Prints and Photographs Division](images/city-rural.png)
 
-## Inspiration for today's activity {.smaller}
+## Inspiration for today's lecture {.smaller}
 
 -   In February 2021, Allen Hillery, Athony Starks, and Sekou Tyler, started the #DuboisChallenge, and annual online challenge where participants use modern data visualization tools such as R, Python, Tableau, etc. to recreate the data visualizations by W.E.B. Du Bois.
 
@@ -156,7 +148,7 @@ For each of the following visualizations: Review the plot and provide an interpr
 
 ## Recreation activities {.smaller}
 
-The most prevalent type of visualizations created by W. E. B. Du Bois are bar charts, so the activities (`ae-12`) will focus on recreating the following, seemingly simple, bar charts.
+The most prevalent type of visualizations created by W. E. B. Du Bois are bar charts, which inspired your `hw-03` recreation challenge.
 
 ::: {#fig-activities layout="[[30,-5,65]]"}
 ![Plate 49](images/public-school-enrollment.jpg){#fig-public-school width="600"}

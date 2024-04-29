@@ -1,6 +1,6 @@
 ---
 title: Generative art
-subtitle: Lecture 26
+subtitle: Lecture 27
 title-slide-attributes:
   data-background-image: ../vizdata-bg.png
   data-background-size: 800px, cover
@@ -14,53 +14,11 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   Peer eval 2 is due today at 5pm.
-
--   Course + TA evaluations are due on Thursday.
-
--   Don't
-
 ## Projects presentations
-
-Show up at the beginning (or, better yet, 10 mins before) the time period you're assigned to:
-
-![](images/project_presentations.png){fig-alt="Project presentation time periods" fig-align="center" width="400"}
 
 ::: task
 Any questions / things I can clarify about the projects or anything else we have covered so far?
 :::
-
-# Awards
-
-## Best thank you card
-
-::: columns
-::: {.column width="33%"}
-![](/student-work/images/thank-you-cards/thank-you-alyssashi.png)
-:::
-
-::: {.column width="33%"}
-![](/student-work/images/thank-you-cards/thank-you-matt-mohn.png)
-:::
-
-::: {.column width="33%"}
-![](/student-work/images/thank-you-cards/thank-you-konn1ehuang.png)
-:::
-:::
-
-## Best ugly plot
-
-![](/student-work/images/ugly-plots/ugly-plot-a21potter.png){width="1000"}
-
-## Best team name
-
-<br><br>
-
-Marvel Cinematic Tidyverse
 
 # Generative art
 
@@ -430,10 +388,20 @@ build_art(
     -   Shape
     -   ...
 
-## Livecoding
+## Writing over images
 
-::: task
-Go to `ae-27` and let's make some flowers!
+::: columns
+::: {.column width="33%"}
+![](images/20200908.png)
+:::
+
+::: {.column width="33%"}
+![](images/genimage-1.png)
+:::
+
+::: {.column width="33%"}
+![](images/genart2.jpeg)
+:::
 :::
 
 # Wrap up

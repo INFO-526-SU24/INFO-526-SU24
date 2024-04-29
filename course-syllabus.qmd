@@ -11,7 +11,7 @@ INFO 526 Data Analysis and Visualization - This course provides an overview of t
 
 ## Course offering
 
-860-2241-1 INFO 526 001 -- Data Analysis and Visualization
+432-2242-7W1 INFO 526 102 202 -- Data Analysis and Visualization
 
 ## Instructor Information
 
@@ -25,21 +25,7 @@ School of Information
 
 [gchism\@arizona.edu](mailto:gchism@arizona.edu)
 
-**Office**: Harvill 420
-
-**Office Hours**: Mondays, 1-2pm, Harvill 420
-
-### Teacher's Assistant
-
-Laura Dozal
-
-PhD Student
-
-School of Information
-
-[lwerthmann\@arizona.edu](mailto:lwerthmann@arizona.edu)
-
-Office: Zoom; available upon request.
+**Office Hours**: By appointment only.
 
 ## Prerequisites
 
@@ -49,7 +35,7 @@ This course assumes that this is not your first interaction with working with da
 
 ## Course Format
 
-Live in-person lectures, MW 11am-12:15pm, McClelland Park, Rm 103. Attendance is mandatory.
+Asynchronous online lectures. Videos of each lecture will be available no later than the Monday of each week by 9am.
 
 ## Course Objective
 
@@ -103,7 +89,7 @@ Furthermore, I would like to create a learning environment for my students that 
 
 ### Communication
 
-All lecture notes, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website: [datavizaz.org](https://datavizaz.org/).
+All lecture videos and notes, assignment instructions, an up-to-date schedule, and other course materials may be found on the course website: [datavizaz.org](https://datavizaz.org/).
 
 I will regularly send course announcements via email and Slack, make sure to check one or the other of these regularly. If an announcement is sent Monday through Thursday, I will assume that you have read the announcement by the next day. If an announcement is sent on a Friday or over the weekend, I will assume that you have read it by Monday.
 
@@ -111,7 +97,7 @@ I will regularly send course announcements via email and Slack, make sure to che
 
 -   If you have a question during lecture, feel free to ask it! There are likely other students with the same question, so by asking you will create a learning opportunity for everyone.
 -   The teaching team is here to help you be successful in the course. You are encouraged to attend office hours to ask questions about the course content and assignments. Many questions are most effectively answered as you discuss them with others, so office hours are a valuable resource. Please use them!
--   Outside of class and office hours, any general questions about course content or assignments should be posted on the course [Slack](https://datavizaz.slack.com). There is a chance another student has already asked a similar question, so please check the other posts on Slack before adding a new question. If you know the answer to a question posted on Slack, I encourage you to respond!
+-   Outside of class and office hours, any general questions about course content or assignments should be posted on the course [Slack](https://info526summer2024.slack.com/). There is a chance another student has already asked a similar question, so please check the other posts on Slack before adding a new question. If you know the answer to a question posted on Slack, I encourage you to respond!
 
 Check out the [Support](https://datavizaz.org/course-support) page for more resources.
 
@@ -123,34 +109,31 @@ I want to make sure that you learn everything you were hoping to learn from this
 
 ## Lectures
 
-The goal of the lectures is for them to be as interactive as possible. My role as instructor is to introduce you new tools and techniques, but it is up to you to take them and make use of them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. Therefore, as much as possible, you will be working on a variety of tasks and activities throughout each lecture and lab. Attendance will not be taken during class but you are expected to attend all lecture and lab sessions and meaningfully contribute to in-class exercises and discussion.
-
-You are expected to bring a laptop to each class so that you can take part in the in-class exercises. Please make sure your laptop is fully charged before you come to class as the number of outlets in the classroom will not be sufficient to accommodate everyone. See the [UArizona Libraries loaner technology](https://lib.arizona.edu/borrow/tech/laptops) if you need a loaner laptop.
+My role as instructor is to introduce you new tools and techniques, but it is up to you to take them and make use of them. A lot of what you do in this course will involve writing code, and coding is a skill that is best learned by doing. Therefore, as much as possible, you will be working on a variety of tasks and activities throughout each lecture.
 
 ## Assessment
 
-Assessment for the course is comprised of four components: attendance and participation, reading quizzes, homework assignments, and projects.
+Assessment for the course is comprised of four components: attendance and participation, reading quizzes, homework assignments, and final project.
 
--   **Attendance and participation** is required throughout the semester. Students who attend at least 80% of the lectures and participate regularly during lecture will receive full credit for this portion of their grade. Participation on Slack will also count towards this component.
+-   **Participation** is required in the course, mostly via Slack. Asking questions in the channels is particularly encouraged, as is helping your peers.
 
--   **Reading quizzes** (6), due every other week (roughly), completed individually. Each quiz is worth 2% of the grade. Lowest quiz score is dropped.
+-   **Reading quizzes** (5), due every other week (roughly), completed individually. Each quiz is worth 2% of the grade.
 
-    Reading quizzes will be linked from the [course schedule](https://datavizaz.org/). They always cover reading that is due since the previous quiz and up to and including the deadline for the given quiz. They're due by 12pm ET (beginning of class) on the indicated day on the [course schedule](https://datavizaz.org/).
+    Reading quizzes will be linked from the [course schedule](https://datavizaz.org/). They always cover reading that is due since the previous quiz and up to and including the deadline for the given quiz. They're due by 5pm AZ time on the indicated day on the [course schedule](https://datavizaz.org/).
 
--   **Homework assignments** (6), due every other week (roughly), completed individually. Each homework assignment is worth 9% of the course grade. Lowest homework assignment score is dropped.
+-   **Homework assignments** (5), due every week (roughly) starting Week 2, completed individually. Each homework assignment is worth 9% of the course grade. All are required, but the lowest homework assignment score is dropped and replaced with the average of the remaining 4.
 
-    Homework assignments are due by 12pm ET (beginning of class) on the indicated day on the [course schedule](https://datavizaz.org/).
+    Homework assignments are due by 5pm AZ Time on the indicated day on the [course schedule](https://datavizaz.org/).
 
--   **Projects** (2), mid-semester and end of semester, completed in teams.
+-   **Project** (1), end of term, completed in individuals or pairs.
 
-    -   Project 1: Teams will be given a dataset to visualize. Project 1 is worth 15% of the course grade.
-    -   Project 2: Teams will pick a dataset of interest to them and/or build an R package that implements a new type of data visualization in R. Project 2 is worth 25% of the course grade.
+    -   Final Project: Teams will be given a dataset to visualize. Project 1 is worth 40% of the course grade.
 
-    The deliverables for each project will include a data visualization, a write up of the process and findings, and a presentation. For the second project, you will be encouraged to think beyond a traditional two-dimensional data visualization (e.g., interactive web apps/dashboards, data art, generative art, physical/tangible visualizations, **ggplot2** extensions, etc.).
+    The deliverables for the project will include a data visualization, a write up of the process and findings, and a presentation. For the second project, you will be encouraged to think beyond a traditional two-dimensional data visualization (e.g., interactive web apps/dashboards, data art, generative art, physical/tangible visualizations, **{ggplot2}** extensions, etc.).
 
-    Each project will have a peer review component to provide at least one round of feedback during the process of development. Teams will provide periodic peer feedback to their teammates while working on the projects as well as upon completion. The scores from the peer evaluations, along with individual contributions tracked by commits on GitHub, will be used to ensure that each student has contributed to the teamwork.
+    The project will have a peer review component to provide at least one round of feedback during the process of development. Teams will provide periodic peer feedback to their teammates while working on the project as well as upon completion. The scores from the peer evaluations, along with individual contributions tracked by commits on GitHub, will be used to ensure that each student has contributed to the teamwork.
 
-    All team members must take part in the presentation. Presentations can be given in person in class, or via Zoom if the team prefers. My preference is that the team stick to one method of delivery (all presenters in person or all presenters on Zoom), but I realize a lot can change throughout this semester, and we'll adjust accordingly.
+    All team members must take part in the presentation. Presentations can be givenvia video recording, or via Zoom to the instructor if the team prefers. My preference is that the team stick to one method of delivery (all presenters via video or all presenters on Zoom), but I realize a lot can change throughout this semester, and we'll adjust accordingly.
 
 All work is expected to be submitted by the deadline and there are no make ups for any missed assessments. See [Late work policy](#late-work-extensions) for policies on late work.
 
@@ -158,13 +141,12 @@ All work is expected to be submitted by the deadline and there are no make ups f
 
 The final course grade will be calculated as follows:
 
-| Category                     | Percentage |
-|------------------------------|------------|
-| Attendance and participation | 5%         |
-| Reading quizzes              | 10%        |
-| Homework assignments         | 45%        |
-| Project 1                    | 15%        |
-| Project 2                    | 25%        |
+| Category             | Percentage |
+|----------------------|------------|
+| Participation        | 5%         |
+| Reading quizzes      | 10%        |
+| Homework assignments | 45%        |
+| Final Project        | 40%        |
 
 The final letter grade will be determined based on the following thresholds:
 
@@ -179,25 +161,11 @@ The final letter grade will be determined based on the following thresholds:
 
 These are upper bounds for grade cutoffs, depending on the class performance the cutoffs may be lowered but they won't be increased.
 
-## Final Projects
-
-Your task for this project is to create *something* related to data visualization.
-
-This is intentionally vague \-- part of the challenge is to design a project that showcases best your interests and strengths.
-
-One requirement is that your project should feature some element that you had to learn on your own. This could be a package you use that we didn't teach in class (e.g., a package for building 3D visualizations) or a workflow (e.g., making a package) or anything else. If you're not sure if your "new" thing counts, just ask!
-
-More information will be provided throughout the semester.
-
-### Final Project Date
-
-**Tuesday, May 07, 10:30am-12:30pm**
-
 ## Teams
 
-You will be assigned to a different team for each of your two projects. You are encouraged to sit with your teammates in lectures. All team members are expected to contribute equally to the completion of each project and you will be asked to evaluate your team members after each assignment is due. Failure to adequately contribute to an assignment will result in a penalty to your mark relative to the team's overall mark.
+You will be assigned to a team for your final project. All team members are expected to contribute equally to the completion of the project and you will be asked to evaluate your team members after each assignment is due. Failure to adequately contribute to an assignment will result in a penalty to your mark relative to the team's overall mark.
 
-You are expected to make use of the provided GitHub repository as their central collaborative platform. Commits to this repository will be used as a metric (one of several) of each team member's relative contribution for each project.
+You are expected to make use of the provided GitHub repository as their central collaborative platform. Commits to this repository will be used as a metric (one of several) of each team member's relative contribution for the project.
 
 ## Course policies
 
@@ -215,7 +183,7 @@ Please abide by the following as you work on assignments in this course:
 
 -   The homework assignments must also be completed individually and you are welcomed to discuss the assignment with classmates at a high level (e.g., discuss what's the best way for approaching a problem, what functions are useful for accomplishing a particular task, etc.). However you may not directly share answers to homework questions (including any code) with anyone other than myself and the teaching assistants.
 
--   For the projects, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.
+-   For the project, collaboration within teams is not only allowed, but expected. Communication between teams at a high level is also allowed however you may not share code or components of the project across teams.
 
 -   **Sharing and reusing code:** I am well aware that a huge volume of code is available on the web to solve any number of problems. Unless I explicitly tell you not to use something, the course's policy is that you may make use of any online resources (e.g. RStudio Community, StackOverflow) but you must explicitly cite where you obtained any code you directly use (or use as inspiration). Any recycled code that is discovered and is not explicitly cited will be treated as plagiarism. On individual assignments you may not directly share code with another student in this class, and on team assignments you may not directly share code with another team in this class.
 
@@ -237,7 +205,7 @@ Students in courses at the UArizona iSchool are expected to maintain rigor in th
 
 -   Using, in whole or in part, computer code not written by the student (for example, from another student, a book, or the internet) in an assignment or project. This includes using such code in modified or unmodified form.
 
--   Searching for solutions to projects or assignments on the internet or through other tools, when your instructor intended for you to learn the solution through exercises (e.g. Googling for the solution to a question on an assignment).
+-   Searching for solutions to the project or assignments on the internet or through other tools, when your instructor intended for you to learn the solution through exercises (e.g. Googling for the solution to a question on an assignment).
 
 -   Simultaneously submitting the same assignment as another student enrolled into the course without prior permission from the instructor
 
@@ -251,7 +219,7 @@ Large language models (LLMs) like ChatGPT are a type of artificial intelligenc
 
 *See my policies on this subject above.*
 
-### Late work & extensions
+### Late work & extensions {#late-work-extensions}
 
 The due dates for assignments are there to help you keep up with the course material and to ensure the teaching team can provide feedback within a timely manner. We understand that things come up periodically that could make it difficult to submit an assignment by the deadline.
 
@@ -267,23 +235,19 @@ Policy on late work depends on the particular course component:
 
     -   Two days late or later: No credit, and we will not provide written feedback
 
--   Projects: The following three components contribute to your project score.
+-   Final Project: The following three components contribute to your project score.
 
     -   Presentation: Late presentations are not accepted and there are no make ups for missed presentations.
 
     -   Write up: GitHub repositories will be closed to contributions at the deadline. If you need to submit your work late, Slack/email me to reopen your repository.
 
-        -  Late, within 24 hours of deadline: -10% of available points
+        -   Late, within 24 hours of deadline: -10% of available points
 
         -   Late, within 24-48 hours of deadline: -20% of available points
 
         -   Two days late or later: No credit, and we will not provide written feedback
 
     -   Peer evaluation: Late peer evaluations are not accepted and there are no make ups for missed presentations. If you do not turn in your peer evaluation, you get 0 points for your own peer score as well, regardless of how your teammates have evaluated you.
-
-### Free passes
-
-I allow three "free passes", which extends your homework deadline by one full day. They can also be stacked, so two or three passes can apply to a single homework assignment. To utilize these passes, submit a GitHub issue with the number that you will be using. Use sparingly, I will not allow late un-penalized late work after they are gone.
 
 ### Waiver for extenuating circumstances
 
@@ -293,13 +257,7 @@ If there are circumstances that are having a longer-term impact on your academic
 
 ### Regrade requests
 
-#### Before hw-02 (training wheels on)
-
-I will regrade your homework assignments 1 once to encourage the correct format for future submissions. Your final score will be the midpoint of the first and second score (e.g., first score: 70%, second score: 100% = final score: 85%). Re-submissions must be received within 1-week of the original grade.
-
-#### From hw-02 and on (training wheels come off)
-
-Regrade requests must be made within one week of when the assignment is returned, and must be typed up and submitted via email to me. These will be considered if points were tallied incorrectly or if you feel your answer is correct but it was marked wrong. No regrade will be made to alter the number of points deducted for a mistake. There will be no grade changes after the second project presentations. Note that during the regrade process your score could go up or go down or not change.
+Regrade requests must be made within one week of when the assignment is returned, and must be typed up and submitted via email to me. These will be considered if points were tallied incorrectly or if you feel your answer is correct but it was marked wrong. No regrade will be made to alter the number of points deducted for a mistake. Note that during the regrade process your score could go up or go down or not change.
 
 *No grades will be changed after the project presentations.*
 
@@ -310,24 +268,6 @@ The grade of "I" may be awarded only at the end of a term, when all but a minor 
 ### **Tutoring**
 
 Tutoring can be found through the UArizona [Think Tank](#0 "https://thinktank.arizona.edu/").
-
-### Attendance policy
-
-Responsibility for class attendance rests with individual students. Since regular and punctual class attendance is expected, students must accept the consequences of failure to attend.
-
-However, there may be many reasons why you cannot be in class on a given day, particularly with possible extra personal and academic stress and health concerns this semester. I am always available to personally catch you up from missed lectures. Please contact me directly about these additional "office hours".
-
-Note that attendance and participation is part of your grade as well.
-
-### Attendance policy related to COVID symptoms, exposure, or infection
-
-Student health, safety, and well-being are the university's top priorities. To help ensure your well-being and the well-being of those around you, please do not come to class if you have symptoms related to COVID-19, have had a known exposure to COVID-19, or have tested positive for COVID-19. If any of these situations apply to you, you must follow university guidance related to the ongoing COVID-19 pandemic and current health and safety protocols. If you are experiencing any COVID-19 symptoms, contact student health at (520) 621-9202. To keep the university community as safe and healthy as possible, you will be expected to follow these and the [university guidelines on COVID-19 mitigation](http://www.covid19.arizona.edu/). Please reach out to me and your academic dean as soon as possible if you need to quarantine or isolate so that we can discuss arrangements for your continued participation in class.
-
-Notify your instructor(s) if you will be missing up to one week of course meetings and/or assignment deadlines
-
-If you must miss the equivalent of more than one week of class and have an emergency, the Dean of Students is the proper office to contact ([DOS-deanofstudents\@email.arizona.edu](mailto:DOS-deanofstudents@email.arizona.edu)). The Dean of Students considers the following as qualified emergencies: the birth of a child, mental health hospitalization, domestic violence matter, house fire, hospitalization for physical health (concussion/emergency surgery/coma/COVID-19 complications/ICU), death of immediate family, Title IX matters, etc.
-
-Please understand that there is no guarantee of an extension when you are absent from class and/or miss a deadline.
 
 *Note: If you've read this far in the syllabus, email me a picture of your pet if you have one or your favorite meme!*
 
@@ -343,14 +283,8 @@ Also watch the video available at <https://arizona.sabacloud.com/Saba/Web_spf/N
 
 ## Important dates
 
--   **Wednesday, January 10:** Classes begin, Wednesday schedule
--   **Monday,** **January 15:** MLK Day, no class
--   **Wednesday, January 17**: Drop/add ends
--   **Tuesday, February 06**: Last day to drop without a W (withdraw)
--   **Monday-Sunday, March 04-10**: Spring recess, no class
--   **Tuesday, March 26**: Last day to withdraw from a class online through UAccess
--   **Wednesday, May 01**: Last day of class, no registration changes can be made
--   **Tuesday, May 07**: Project 2 presentations, 10:30am-12:30pm
+-   **Monday, May 13:** Classes begin, asynchronously
+-   **Friday, June 28:** Last day of classes and examinations
 
 For more important dates, see the full [UArizona Academic Calendar](https://catalog.arizona.edu/2023-2024-academic-calendar).
 

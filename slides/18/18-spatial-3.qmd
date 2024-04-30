@@ -14,13 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   HW 4 due Wednesday, April 3rd
--   Project 2 proposals for peer review due Wednesday, April 3rd
-
 ## Setup {.smaller}
 
 ```{r}

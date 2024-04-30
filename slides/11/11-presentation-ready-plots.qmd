@@ -14,52 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements I
-
-Presentations Monday Mar 11 in lecture:
-
--   Bring a laptop to fill out feedback forms
-
--   One more team evaluation to be filled out promptly after class
-
--   Presentation order to be announced in class tomorrow
-
-::: {.callout-note appearance="minimal"}
-We might go over by 10 mins max for lecture.
-:::
-
-## Announcements II
-
--   Take note of Project 2 presentation date: must be in class in person to present or present live via Zoom in case of isolation
-
--   New teams to be announced following presentations
-
-## Lessons from HW 02 {.smaller}
-
--   **Read the question carefully**
-
-    -   Several instances of no written narrative
-
-    -   Narrative means interpreting the trends from the plot
-
--   **Colors are important**
-
-    -   Contextual colors (e.g., political party colors) should be adhered to
-
--   **Narrative format**
-
-    -   Narrative text needs to be plain text, with a \## or \### level "Narrative" header above
-
--   **Suppress warnings and messages**
-
-    -   Use `#| warning: false` and `#| message: false`
-
--   **GitHub commits are important**
-
-    -   You must use at least one commit for each question, otherwise you won't be able to revert to prior commits.
-
 ## Setup {.smaller}
 
 ```{r}
@@ -636,4 +590,4 @@ Learn more at [https://patchwork.data-imaginist.com](https://patchwork.data-imag
 
 <br>
 
-Look into the source code at [https://github.com/INFO-526-S24/INFO526-S24/slides/](https://github.com/INFO-526-S24/INFO526-S24/tree/main/slides).
+Look into the source code at [https://github.com/INFO-526-S24/INFO526-S24/slides/](https://github.com/INFO-526-SU24/INFO-526-SU24/tree/main/slides).

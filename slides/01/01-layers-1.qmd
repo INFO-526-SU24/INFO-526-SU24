@@ -11,13 +11,6 @@ execute:
   code-link: true
 ---
 
-# Warm up
-
-## Announcements
-
--   A note on readings for this week: some of it is review so feel free to skim those parts.
--   RQ 1 is due Friday (Jan 26)
-
 ## Setup
 
 ```{r}

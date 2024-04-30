@@ -15,47 +15,11 @@ revealjs-plugins:
   - code-mover
 ---
 
-# Warm up
-
-## Announcements
-
--   HW 02 is due February 14th
--   Peer-review assignments will be announced before Wednesday (when peer-review will occur)
-
 ## Warnings and messages
 
 -   You should suppress package loading and data loading messages with `message: false` as a chunk option
 
 -   You should also suppress warnings with `warning: false` **after** making sure you're ok with them, or update your code to eliminate warnings
-
-# HW 1 lessons learned
-
-## Highlights
-
--   Review HW 1 issues, and show us you reviewed them by closing the issue.
-
--   DO NOT hard code paths! Use the **`here`** package to help with relative paths, if you need.
-
--   Make sure that all packages are installed/loaded. I suggest the `pacman` workflow we saw before:
-
-```{r, eval=FALSE}
-if (!require("pacman")) 
-  install.packages("pacman")
-
-pacman::p_load(package1, package2, ...)
-pacman::p_load_gh("GitHubPackage1")
-```
-
-## HW 1 lessons learned cont...
-
-::: incremental
-1.  **Start early**. No late work exceptions will be made in the future
-2.  **Ask your peers**. I have been monopolized by a few individuals, which is not fair to the rest.
-    1.  Peers will likely have the answer
-    2.  Peers will likely get to the question before I will.
-3.  **Ask descriptive questions**. See [this page](https://datavizaz.org/course-support.html#how-to-ask-for-help) on asking effective questions.
-4.  **Please respect my work hours**. I will no longer reply to messages after 5pm on work days and at all on weekends.
-:::
 
 ## Setup {.smaller}
 
@@ -162,7 +126,7 @@ home_runs <- Batting |>
 Our dataset comes from the R package `Lahman`. Each row in the data frame is the hitting stats of a player for a given year. Today we will use the following columns:
 
 | Variable | Description                                                                        |
-|------------------------|-----------------------------------------------|
+|-------------------------|-----------------------------------------------|
 | `yearID` | The year for the statistics                                                        |
 | `HR`     | The number of home runs a player hit in a given year                               |
 | `G`      | Number of games played; there are 162 games in a baseball season (154 before 1961) |

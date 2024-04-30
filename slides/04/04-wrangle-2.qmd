@@ -13,24 +13,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   RQ 2 due Monday (Feb 05):
-
-    -   Should already be live
-
-    -   Covers everything since the previous quiz
-
--   Make sure to review the feedback on your HW 01 repo and close the issue once you're done reviewing.
-
-    -   Submit a regrade request via the template GitHub issue
-
--   Once you review, close the issue
-
--   HW 02 won't be graded for those who have open issues from the previously assigned homework assignment.
-
 ## Setup {.smaller}
 
 ```{r}
@@ -41,8 +23,8 @@ editor_options:
 library(countdown)
 library(tidyverse)
 library(glue)
-library(lubridate)
 library(scales)
+library(ggthemes)
 
 # set theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 14))
@@ -98,25 +80,21 @@ hotels <- hotels |>
     arrival_date_month = fct_relevel(arrival_date_month, month.name),
     season = case_when(
       arrival_date_month %in% c("December", "January", "February") ~ "Winter",
-      arrival_date_month %in% c("March", "April", "May")           ~ "Spring",
-      arrival_date_month %in% c("June", "July", "August")          ~ "Summer",
-      TRUE                                                         ~ "Fall"
+      arrival_date_month %in% c("March", "April", "May") ~ "Spring",
+      arrival_date_month %in% c("June", "July", "August") ~ "Summer",
+      TRUE ~ "Fall"
     ),
-    season = fct_relevel(season, "Winter", "Spring", "Summer", "Fall"),
-    season_emoji = case_when(
-      season == "Winter" ~ "❄️",
-      season == "Spring" ~ "⛅️️",
-      season == "Summer" ~ "☀️",
-      season == "Fall"   ~ "☂️"
-    )
+    season = fct_relevel(season, "Winter", "Spring", "Summer", "Fall")
   )
 
 hotels |>
-  count(season_emoji, hotel, arrival_date_month) |>
+  count(season, hotel, arrival_date_month) |>
   ggplot(aes(x = arrival_date_month, y = n, group = hotel, linetype = hotel)) +
   geom_line(linewidth = 0.8, color = "cornsilk4") +
-  geom_text(aes(label = season_emoji), size = 6, show.legend = FALSE) +
+  geom_point(aes(shape = season, color = season), size = 4, show.legend = FALSE) +
   scale_x_discrete(labels = month.abb) +
+  scale_color_colorblind() +
+  scale_shape_manual(values = c("circle", "square", "diamond", "triangle")) +
   labs(
     x = "Arrival month", y = "Number of bookings", linetype = NULL,
     title = "Number of monthly bookings",

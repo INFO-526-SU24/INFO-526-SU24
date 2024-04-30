@@ -14,26 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   Don't forget to watch the videos for Wednesday's lecture
-
-## Project next steps I {.smaller}
-
--   Proposal feedback is available.
-    -   Required: Address all issues and close them.
-
-    -   Optional: Submit for regrade, by replying to the "Proposal feedback" issue and tagging me in your reply. Due 11:59pm today. Final proposal score will be midpoint of original and updated score.
-
-## Project next steps II {.smaller}
-
--   Create a slide deck in `presentation.qmd`, replacing the placeholder text.
--   Add your write-up to `index.qmd`, replacing the placeholder text.
--   In both outputs, hide the code with `echo: false` prior to turning them in.
--   Due: Monday, March 11th, 11am.
-
 ## Setup {.smaller}
 
 ```{r}

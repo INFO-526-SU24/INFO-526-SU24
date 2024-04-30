@@ -14,18 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   Project 1 feedback is posted
-
--   Scores for all assignments so far will be on D2L soon
-
--   Project 2 groups have been announced, repos will be assigned by the end of the week
-
--   Take a note of the deadlines for the rest of the semester
-
 ## Setup {.smaller}
 
 ```{r}
@@ -33,23 +21,18 @@ editor_options:
 #| message: false
 
 # load packages
-library(countdown) # countdown in slides
-library(tidyverse) # data wrangling & viz
-library(lubridate) # dealing with dates
-library(mgcv)      # estimate penalized Generalized linear models
-library(colorspace)# color scales
-library(broom)     # turn model outputs to tibbles
-library(emmeans)   # estimate marginal means (least-squares)
-library(ungeviz)   # vizualize uncertainty
-library(ggridges)  # ridgeline plots
-library(tidybayes) # tidy bayesian functions
-library(dviz.supp) # supplementary materials for C. Wilke's data viz book
-library(ggpubr)    # publication ready plots
-library(ggtext)    # format ggplot text
-library(extrafont) # fonts
-library(ggstance)  # horiz flipped stats, geoms; vert flipped positions
-library(gganimate) # animated ggplots
-library(emo)       # emojis
+library(tidyverse)
+library(tidymodels)
+library(colorspace)
+library(cowplot)
+library(distributional)
+library(emmeans)
+library(gapminder)
+library(ggdist)
+library(margins)
+library(ggtext)
+library(ggpubr)
+library(ungeviz) # install_github("wilkelab/ungeviz")
 
 # set theme for ggplot2
 ggplot2::theme_set(ggplot2::theme_minimal(base_size = 14, base_family = "Myriad Pro"))
@@ -65,8 +48,6 @@ knitr::opts_chunk$set(
   fig.align = "center", # center align figures
   dpi = 300 # higher dpi, sharper image
 )
-
-loadfonts(device = "all")
 
 ```
 
@@ -143,7 +124,7 @@ ggplot(data, aes(x, y, fill = value)) +
     guide = guide_legend(override.aes = list(size = 0))
   ) +
   facet_wrap(~label) +
-  theme_dviz_grid() +
+  theme_minimal_grid(20) +
   theme(
     panel.spacing = unit(12, "pt"),
     legend.position = "bottom",
@@ -650,30 +631,96 @@ plot_grid(
 )
 ```
 
-## Error bars {.smaller}
+## Frequentist interpretation of a confidence interval
+
+```{r}
+#| echo: false
+#| warning: false
+#| message: false
+#| fig-align: center
+#| fig-asp: 0.8
+#| out-width: 50%
+set.seed(85439)
+df <- tibble(y = rnorm(10000))
+df_cont <- tibble(
+  x = c(seq(-3, 3, by = 0.02), -3)
+) |>
+  mutate(
+    y = dnorm(x),
+    ny = y/max(y)
+  )
+spl <- sampler(10, 5, seed = 9382)
+ggplot(df, aes(y = y)) +
+  geom_polygon(data = df_cont, aes(1.5*ny + 10.5, x), fill = fill_color) +
+  geom_hline(yintercept = 0, linetype = 2, size = 0.5) +
+  geom_point(data = spl, aes(x = .draw), size = 2,
+             shape = 21, fill = fill_color) +
+  stat_summary(
+    data = spl, aes(x = .draw, color = ifelse(stat(ymax) < 0 | stat(ymin) > 0, "outside", "inside")),
+    geom = "errorbar", width = 0.2, size = 0.75,
+    position = position_nudge(x = -.15)
+  ) +
+  stat_summary(
+    data = spl, aes(x = .draw, color = ifelse(stat(ymax) < 0 | stat(ymin) > 0, "outside", "inside")),
+    geom = "point", size = 2.5, position = position_nudge(x = -.15)
+  ) +
+  annotate(x = 11.7, y = 1, geom = "text", label = "population", size = 14/.pt, hjust = 0) +
+  annotate(x = 11.1, y = 0.05, geom = "text", label = "mean", size = 12/.pt, hjust = 0) +
+  annotate(x = 10.04, y = -Inf, geom = "text", label = "samples", size = 14/.pt, hjust = 0, vjust = 0) +
+  annotate(x = 7.9, y = 2, geom = "text", label = "CI excludes true mean", size = 12/.pt, hjust = 1, vjust = 1) +
+  annotate(x = 8.87, y = 0.23, geom = "text", label = "CI includes true mean", size = 12/.pt, hjust = 0, vjust = 1) +
+  scale_color_manual(values = c("#EF4056", "#1E5288"), guide = "none") +
+  coord_flip() +
+  scale_x_continuous(breaks = 1:10, labels = as.character(10:1), name = NULL, expand = c(0.02, 0)) +
+  scale_y_continuous(breaks = NULL, name = NULL, limits = c(-3, 3), expand = c(0, 0)) +
+  theme(axis.text.y = element_text(vjust = 0.5))
+```
+
+::: aside
+Figure from [Claus O. Wilke. Fundamentals of Data Visualization. O'Reilly, 2019.](https://clauswilke.com/dataviz)
+:::
+
+## Everest
 
 ```{r}
 #| message: false
-#| warning: false
 #| echo: false
+everest <- read_csv(here::here("slides/14", "data/everest.csv"))
+```
+
+```{r}
+#| eval: false
+everest <- read_csv("data/everest.csv")
+```
+
+```{r}
+everest
+```
+
+## Highest point reached on Everest in 2019
+
+Includes only climbers and expedition members who **did not** summit
+
+```{r}
+#| label: everest-highest-point
+#| echo: false
+#| fig-width: 8
 #| fig-asp: 0.5
+#| out-width: 70%
+everest_2019 <- everest |>
+  filter(!is.na(highpoint_metres) & success == FALSE) |>
+  filter(year == 2019)
 
 # color for individual small data points
-point_color <- darken("#009E73", .3)
+point_color <- darken("#1E5288", .65)
 
-cacao %>% 
-  filter(location == "Canada") -> cacao_single 
-
-fit <- lm(rating ~ 1, data = cacao_single)
-
-CI_df <- data.frame(type = c(0.8, 0.95, 0.99)) %>%
-  mutate(df = map(type, ~tidy(emmeans(fit, ~ 1, options = list(level = .x))))) %>%
-  unnest(cols = c('df')) %>%
-  select(type, estimate, std.error) %>%
-  mutate(label = paste0(signif(100*type, 2), "% confidence interval"), 
-                        conf.low = estimate - std.error * qt(1 - (1 - type) / 2, df = nrow(cacao_single) - 1),
-    conf.high = estimate + std.error * qt(1 - (1 - type) / 2, df = nrow(cacao_single) - 1)
-  )
+# model fit
+fit <- lm(highpoint_metres ~ 1, data = everest_2019)
+CI_df <- data.frame(type = c(0.8, 0.95, 0.99)) |>
+  mutate(df = map(type, ~summary(emmeans(fit, ~ 1, options = list(level = .x))))) |>
+  unnest(cols = df) |>
+  select(type, estimate = emmean, std.error = SE, conf.low = lower.CL, conf.high = upper.CL) |>
+  mutate(type = paste0(signif(100*type, 2), "% confidence interval"))
 
 CI_df <- rbind(
   CI_df,
@@ -682,1222 +729,624 @@ CI_df <- rbind(
     estimate = CI_df$estimate[1],
     std.error = CI_df$std.error[1],
     conf.low = CI_df$estimate[1] - CI_df$std.error[1],
-    conf.high = CI_df$estimate[1] + CI_df$std.error[1],
-    label = "+/- standard error"
+    conf.high = CI_df$estimate[1] + CI_df$std.error[1]
   ),
   data.frame(
     type = "standard deviation",
-    estimate = mean(cacao_single$rating),
+    estimate = mean(everest_2019$highpoint_metres),
     std.error = CI_df$std.error[1],
-    conf.low = mean(cacao_single$rating) - sd(cacao_single$rating),
-    conf.high = mean(cacao_single$rating) + sd(cacao_single$rating),
-    label = "+/- standard deviation"
+    conf.low = mean(everest_2019$highpoint_metres) - sd(everest_2019$highpoint_metres),
+    conf.high = mean(everest_2019$highpoint_metres) + sd(everest_2019$highpoint_metres)
   ),
   data.frame(
-    type = "sample", estimate = mean(cacao_single$rating), std.error = NA,
-    conf.low = NA, conf.high = max(cacao_single$rating),
-    label = NA
+    type = "sample", estimate = mean(everest_2019$highpoint_metres), std.error = NA,
+    conf.low = NA, conf.high = max(everest_2019$highpoint_metres)
   )
-) %>%
+) |>
   mutate(
     type = fct_relevel(factor(type), "sample", "standard deviation", "standard error"),
     label = case_when(
-      TRUE ~ as.character(label), #paste0("mean +/- ", type)
+      type == "sample" ~ NA_character_,
+      type == "standard deviation" ~ "+/- standard deviation",
+      type == "standard error" ~ "+/- standard error",
+      TRUE ~ as.character(type) #paste0("mean +/- ", type)
     )
   )
 
-label_x <- filter(CI_df, type == "standard deviation")$conf.high + 0.04
+label_x <- filter(CI_df, type == "standard deviation")$conf.high + 70
 
 ggplot(CI_df, aes(estimate, type)) + 
   geom_point(
-    data = cacao_single, aes(rating, "sample"), 
+    data = everest_2019, aes(highpoint_metres, "sample"), 
     position = position_jitter(height = 0.6, width = 0.02, seed = 7843),
     color = point_color,
-    size = 0.3
+    size = 1.2,
+    na.rm = TRUE
   ) +
-  geom_errorbarh(aes(xmin = conf.low, xmax = conf.high), height = 0.2, na.rm = TRUE) +
-  geom_point(size = 2, color = "#D55E00") +
-  geom_label(data = CI_df %>% filter(!grepl("%", label)),
-    aes(label_x, label = label), hjust = 0, nudge_y = 0.01, na.rm = TRUE,
-    size = 14/.pt,
-    label.size = 0
+  geom_errorbarh(
+    aes(xmin = conf.low, xmax = conf.high),
+    height = 0.2, na.rm = TRUE
   ) +
-  geom_label(data = CI_df %>% filter(grepl("%", label)),
-    aes(3.65, label = label), hjust = 0, nudge_y = 0.01, na.rm = TRUE,
-    size = 14/.pt,
-    label.size = 0
+  geom_point(size = 2, color = "#EF4056") +
+  geom_text(
+    aes(label_x, label = label),
+    hjust = 0, nudge_y = 0.01, na.rm = TRUE,
+    size = 16/.pt
   ) +
   geom_text(
     data = filter(CI_df, type == "sample"),
-    aes(estimate, label = "mean"), hjust = 0.2, vjust = 0, nudge_y = 0.2,
-    size = 14/.pt
+    aes(conf.high + 100, label = type), 
+    hjust = 0, nudge_y = 0.01,
+    size = 16/.pt
+  ) +
+  geom_label(
+    data = filter(CI_df, type == "sample"),
+    aes(estimate, label = "mean"),
+    hjust = 0.2, vjust = 0, nudge_y = 0.1,
+    size = 16/.pt,
+    fill = "#FFFFFFA0",
+    label.size = 0
   ) +
   scale_x_continuous(
-    limits = c(1.95, 4.1),
+    limits = c(5500, 8950),
     expand = c(0, 0),
-    name = "chocolate flavor rating"
+    name = "highest point reached (meters)"
   ) +
   scale_y_discrete(
     name = NULL,
     limits = rev(levels(CI_df$type)),
-    expand = expand_scale(add = c(0.6, 0.8)),
+    expand = expansion(add = c(0.6, 0.8)),
     breaks = NULL
   ) +
   coord_cartesian(clip = "off") +
-  theme_dviz_vgrid(14, rel_small = 1) +
+  theme_minimal_vgrid(16, rel_small = 1) +
   theme(
-    plot.margin = margin(3, 82, 3, 1.5),
+    plot.margin = margin(r = 160),
     axis.line.x = element_line(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.title.x = element_text(hjust = 1)
+    axis.line.y = element_blank(),
+    axis.ticks.x = element_line(color = "black")
   )
 ```
 
-Whenever you visualize uncertainty with error bars, you must specify what quantity and/or confidence level the error bars represent.
+## Marginal effects: Height reached on Everest
 
-## Sample size and standard error
+Average height reached relative to:<br> a male climber who climbed with oxygen, summited, and survived
+
+. . .
 
 ```{r}
-#| message: false
-#| warning: false
+#| label: everest_margins
 #| echo: false
-#| fig-asp: 0.48
-
-cacao_CA <- filter(cacao, location == "Canada")
-cacao_CH <- filter(cacao, location == "Switzerland")
-
-fit_CA <- lm(rating ~ 1, data = cacao_CA)
-fit_CH <- lm(rating ~ 1, data = cacao_CH)
-
-CI_CA <- data.frame(level = c(0.99, 0.95, 0.8)) %>%
-  mutate(df = map(level, ~confint(emmeans(fit_CA, ~ 1), level = .x))) %>%
-  unnest(cols = "df") %>%
-  rename(conf.low = lower.CL, conf.high = upper.CL, estimate = emmean) %>%
-  mutate(type = "CI",
-         location = "Canada",
-         level = paste0(signif(100*level, 2), "%")) %>%
-    select(level, estimate, conf.low, conf.high, type, location)
-
-
-CI_CH <- data.frame(level = c(0.99, 0.95, 0.8)) %>%
-  mutate(df = map(level, ~confint(emmeans(fit_CH, ~ 1), level = .x))) %>%
-  unnest(cols = "df") %>%
-  rename(conf.low = lower.CL, conf.high = upper.CL, estimate = emmean) %>%
-  mutate(type = "CI",
-         location = "Switzerland",
-                  level = paste0(signif(100*level, 2), "%")) %>%
-  select(level, estimate, conf.low, conf.high, type, location)
-
-CI_df <- rbind(CI_CA, CI_CH)
-
-sd_df <- rbind(
-  data.frame(
-    level = NA,
-    estimate = mean(cacao_CA$rating),
-    conf.low = mean(cacao_CA$rating) - sd(cacao_CA$rating),
-    conf.high = mean(cacao_CA$rating) + sd(cacao_CA$rating),
-    type = "original data",
-    location = "Canada"
-  ),
-  data.frame(
-    level = NA,
-    estimate = mean(cacao_CH$rating),
-    conf.low = mean(cacao_CH$rating) - sd(cacao_CH$rating),
-    conf.high = mean(cacao_CH$rating) + sd(cacao_CH$rating),
-    type = "original data",
-    location = "Switzerland"
+#| fig-width: 8
+#| fig-asp: 0.5
+#| out-width: 70%
+everest_data <- everest |>
+  filter(!is.na(age) & !is.na(highpoint_metres)) |>
+  filter(year == 2019) |>
+  mutate(
+    sex = fct_relevel(
+      fct_recode(sex, female = "F", male = "M"),
+      "male"
+    ),
+    success = factor(
+      ifelse(success, "yes", "no"),
+      levels = c("yes", "no")
+    ),
+    oxygen_used = factor(
+      ifelse(oxygen_used, "with", "without"),
+      levels = c("with", "without")
+    ),
   )
-)
 
+evrst_out <- lm(highpoint_metres ~ died + sex + success + oxygen_used, data = everest_data)
+#summary(evrst_out)
 
-ggplot(rbind(CI_df, sd_df), aes(estimate, interaction(location, type))) + 
-  geom_point(
-    data = cacao_CA, # draw two separate layers to get jittering right relative to previous figure
-    aes(rating, interaction(location, "original data")),
-    position = position_jitter(height = 0.6, width = 0.02, seed = 7843),
-    color = point_color,
-    size = 0.3
+evrst_marg <- margins(evrst_out)
+#evrst_marg
+
+evrst_gg <- as_tibble(summary(evrst_marg)) |>
+  mutate(
+    factor = fct_reorder(
+      fct_recode(
+        factor,
+        "female climber" = "sexfemale",
+        "did not summit" = "successno",
+        "without oxygen" = "oxygen_usedwithout"
+      ), AME
+    )
+  )
+#evrst_gg
+
+ggplot(evrst_gg) +
+  aes(
+    y = factor,
+    x = AME, xmin = lower, xmax = upper
   ) +
-  geom_point(
-    data = cacao_CH,
-    aes(rating, interaction(location, "original data")),
-    position = position_jitter(height = 0.6, width = 0.02, seed = 7844),
-    color = point_color,
-    size = 0.3
+  geom_vline(xintercept = 0, color = "gray20") +
+  geom_pointrange(color = "#0072B2", size = 1) +
+  scale_x_continuous(
+    name = "average height reached below summit (meters)",
+    limits = c(-1600, 200)
   ) +
-  geom_errorbarh(
-    data = sd_df,
-    aes(y = interaction(location, "original data"), xmin = conf.low, xmax = conf.high),
-    height = 0.2
+  scale_y_discrete(name = NULL) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(axis.ticks.length.x = grid::unit(0, "pt"))
+```
+
+## Marginal effects: Height reached on Everest
+
+Other visualization options: half-eye
+
+```{r}
+#| label: everest_margins2
+#| echo: false
+#| fig-width: 8
+#| fig-asp: 0.5
+#| out-width: 70%
+ggplot(evrst_gg) +
+  aes(y = factor, x = AME) +
+  geom_vline(xintercept = 0, color = "gray20") +
+  stat_dist_halfeye(
+    aes(dist = dist_normal(mu = AME, sigma = SE)),
+    color = "#0072B2",
+    fill =  "#0072B288",
+    alpha = NA,
+    point_size = 4
   ) +
-  geom_errorbarh( # error bar without cap
-    data = CI_df,
-    aes(y = interaction(location, "CI"), xmin = conf.low, xmax = conf.high, color = level, size = level),
-    height = 0
-  )  +
-  geom_errorbarh( # error bar with cap
-    data = CI_df,
-    aes(y = interaction(location, "CI"), xmin = conf.low, xmax = conf.high, color = level),
-    height = 0.2
+  scale_x_continuous(
+    name = "average height reached below summit (meters)",
+    limits = c(-1600, 200)
   ) +
-  geom_point(size = 2, color = "#D55E00") +
-  geom_label(
-    data = data.frame(
-      estimate = 4.06,
-      location = c("Canada", "Switzerland"),
-      type = "original data",
-      label = c(
-        paste0("Canada,\nn = ", nrow(cacao_CA)),
-        paste0("Switzerland,\nn = ", nrow(cacao_CH))
+  scale_y_discrete(name = NULL) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(axis.ticks.length.x = grid::unit(0, "pt"))
+```
+
+## Marginal effects: Height reached on Everest
+
+Other visualization options: gradient interval
+
+```{r}
+#| label: everest_margins3
+#| echo: false
+#| fig-width: 8
+#| fig-asp: 0.5
+#| out-width: 70%
+ggplot(evrst_gg) +
+  aes(y = factor, x = AME) +
+  geom_vline(xintercept = 0, color = "gray20") +
+  stat_dist_gradientinterval(
+    aes(dist = dist_normal(mu = AME, sigma = SE)),
+    color = "#0072B2",
+    fill =  "#0072B288",
+    alpha = NA,
+    point_size = 4
+  ) +
+  scale_x_continuous(
+    name = "average height reached below summit (meters)",
+    limits = c(-1600, 200)
+  ) +
+  scale_y_discrete(name = NULL) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(axis.ticks.length.x = grid::unit(0, "pt"))
+```
+
+## Marginal effects: Height reached on Everest
+
+Other visualization options: quantile dotplot
+
+```{r}
+#| label: everest_margins4
+#| echo: false
+#| fig-width: 8
+#| fig-asp: 0.5
+#| out-width: 70%
+ggplot(evrst_gg) +
+  aes(y = factor, x = AME) +
+  geom_vline(xintercept = 0, color = "gray20") +
+  stat_dist_dotsinterval(
+    aes(dist = dist_normal(mu = AME, sigma = SE)),
+    color = "#0072B2",
+    fill =  "#0072B288",
+    alpha = NA,
+    point_size = 4,
+    quantiles = 20
+  ) +
+  scale_x_continuous(
+    name = "average height reached below summit (meters)",
+    limits = c(-1600, 200)
+  ) +
+  scale_y_discrete(name = NULL) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(axis.ticks.length.x = grid::unit(0, "pt"))
+```
+
+## Marginal effects: Height reached on Everest
+
+Other visualization options: quantile dotplot
+
+```{r}
+#| label: everest_margins5
+#| echo: false
+#| fig-width: 8
+#| fig-asp: 0.5
+#| out-width: 70%
+ggplot(evrst_gg) +
+  aes(y = factor, x = AME) +
+  geom_vline(xintercept = 0, color = "gray20") +
+  stat_dist_dotsinterval(
+    aes(dist = dist_normal(mu = AME, sigma = SE)),
+    color = "#0072B2",
+    fill =  "#0072B288",
+    alpha = NA,
+    point_size = 4,
+    quantiles = 7
+  ) +
+  scale_x_continuous(
+    name = "average height reached below summit (meters)",
+    limits = c(-1600, 200)
+  ) +
+  scale_y_discrete(name = NULL) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(axis.ticks.length.x = grid::unit(0, "pt"))
+```
+
+## Marginal effects: Height reached on Everest
+
+Other visualization options: quantile dotplot
+
+```{r}
+#| label: everest_margins6
+#| echo: false
+#| fig-width: 8
+#| fig-asp: 0.5
+#| out-width: 70%
+ggplot(evrst_gg) +
+  aes(y = factor, x = AME) +
+  geom_vline(xintercept = 0, color = "gray20") +
+  stat_dist_dotsinterval(
+    aes(dist = dist_normal(mu = AME, sigma = SE)),
+    color = "#0072B2",
+    fill =  "#0072B288",
+    alpha = NA,
+    point_size = 4,
+    quantiles = 50
+  ) +
+  scale_x_continuous(
+    name = "average height reached below summit (meters)",
+    limits = c(-1600, 200)
+  ) +
+  scale_y_discrete(name = NULL) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(axis.ticks.length.x = grid::unit(0, "pt"))
+```
+
+## Making a plot with error bars in R
+
+Example: Relationship between life expectancy and GDP per capita
+
+```{r}
+#| label: gapminder-regressions
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-asp: 0.65
+#| out-width: 70%
+gapminder |>
+  filter(
+    continent != "Oceania",
+    year %in% c(1952, 1967, 1982, 1997)
+  ) |>
+  mutate(
+    continent = fct_relevel(continent,  "Americas", "Europe", "Asia",  "Africa")
+  ) |>
+  ggplot(aes(log(gdpPercap), lifeExp)) +
+  geom_point(size = 0.5, color = "#0072B2") +
+  geom_smooth(method = "lm", color = "black") +
+  xlab("log GDP per capita") +
+  scale_y_continuous(
+    name = "life expectancy",
+    breaks = c(40, 60, 80)
+  ) +
+  facet_grid(year ~ continent) +
+  theme_minimal_grid(14, rel_small = 1) +
+  panel_border(color = "black")
+```
+
+## Making a plot with error bars in R
+
+Example: Relationship between life expectancy and GDP per capita
+
+::: columns
+::: {.column width="50%"}
+```{r}
+#| label: gapminder-regressions2
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-asp: 0.65
+#| out-width: 100%
+gapminder |>
+  filter(
+    continent != "Oceania",
+    year %in% c(1952, 1967, 1982, 1997)
+  ) |>
+  mutate(
+    continent = fct_relevel(continent,  "Americas", "Europe", "Asia",  "Africa")
+  ) |>
+  ggplot(aes(log(gdpPercap), lifeExp)) +
+  geom_point(size = 0.5, color = "#0072B2") +
+  geom_smooth(method = "lm", color = "black") +
+  xlab("log GDP per capita") +
+  scale_y_continuous(
+    name = "life expectancy",
+    breaks = c(40, 60, 80)
+  ) +
+  facet_grid(year ~ continent) +
+  theme_minimal_grid(14, rel_small = 1) +
+  panel_border(color = "black")
+```
+:::
+
+::: {.column width="50%"}
+```{r}
+#| label: gapminder-summary
+#| echo: false
+#| message: false
+#| fig-width: 7
+#| fig-asp: 0.5
+#| out-width: 100%
+gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out) |>
+  filter(term != "(Intercept)", continent != "Oceania") |>
+  mutate(
+    continent = fct_relevel(continent, "Americas", "Europe", "Asia",  "Africa")
+  ) |>
+  ggplot() +
+  aes(
+    x = year, y = estimate,
+    ymin = estimate - 1.96*std.error,
+    ymax = estimate + 1.96*std.error,
+    color = continent
+  ) +
+  geom_pointrange(
+    position = position_dodge(width = 1)
+  ) +
+  scale_x_continuous(
+    breaks = c(1952, 1962, 1972, 1982, 1992, 2002)
+  ) + 
+  scale_y_continuous(
+    name = "regression slope"
+  ) +
+  scale_color_manual(
+    values = c(Africa = "#009E73", Americas = "#0072B2", Asia = "#866fa3", Europe = "#F0E442")
+  ) +
+  theme_minimal_grid(16, rel_small = 1) +
+  theme(legend.position = "top")
+```
+:::
+:::
+
+## Gapminder
+
+See [gapminder.org](https://www.gapminder.org/) for fantastic visualizations and up-to-date data
+
+```{r}
+gapminder
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+lm_data <- gapminder |>
+  nest(data = -c(continent, year))
+
+lm_data
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x))
+  )
+
+lm_data
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  )
+
+lm_data
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out)
+
+lm_data
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out) |>
+  select(-fit, -data)
+
+lm_data
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+lm_data <- gapminder |>
+  nest(data = -c(continent, year)) |>
+  mutate(
+    fit = map(data, ~lm(lifeExp ~ log(gdpPercap), data = .x)),
+    tidy_out = map(fit, tidy)
+  ) |>
+  unnest(cols = tidy_out) |>
+  select(-fit, -data) |>
+  filter(term != "(Intercept)", continent != "Oceania")
+
+lm_data
+```
+
+## Making a plot with error bars in R {.smaller}
+
+```{r}
+#| label: gapminder-model
+#| output-location: column
+ggplot(lm_data) +
+  aes(
+    x = year, y = estimate,
+    ymin = estimate - 1.96*std.error,
+    ymax = estimate + 1.96*std.error,
+    color = continent
+  ) +
+  geom_pointrange(
+    position = position_dodge(width = 1)
+  ) +
+  scale_x_continuous(
+    breaks = gapminder |> distinct(year) |> pull(year)
+  ) + 
+  theme(legend.position = "top")
+```
+
+::: aside
+Figure and code idea from [Kieran Healy. Data Visualization: A practical introduction. Princeton University Press, 2019.](https://socviz.co/)
+:::
+
+## Data prep
+
+For 1952 only:
+
+```{r}
+lm_data_1952 <- lm_data |>
+  filter(year == 1952) |>
+  mutate(
+    continent = fct_reorder(continent, estimate) 
+  )
+```
+
+## Half-eye {.smaller}
+
+`ggdist::stat_dist_halfeye()`:
+
+```{r}
+#| label: gapminder-halfeye
+#| output-location: column
+#| code-line-numbers: "|3-10"
+lm_data_1952 |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_halfeye(
+    aes(
+      dist = dist_normal(
+        mu = estimate, sigma = std.error
       )
     ),
-    aes(label = label), hjust = 0, vjust = 0.5, nudge_y = 0.01,
-    size = 14/.pt,
-    label.size = 0
-  ) +
-  scale_x_continuous(
-    limits = c(1.95, 4.1),
-    expand = c(0, 0),
-    name = "chocolate flavor rating"
-  ) +
-  scale_y_discrete(
-    name = NULL,
-    limits = rev(c("Canada.original data", "Canada.CI", "dummy", "Switzerland.original data", "Switzerland.CI")),
-    expand = expand_scale(add = c(1, 0.8)),
-    breaks = NULL
-  ) +
-  scale_fill_manual(
-    aesthetics = c("color", "fill"),
-    name = "confidence level",
-    values = c(
-     `80%` = desaturate(darken("#0072B2", .2), .3),
-     `95%` = desaturate(lighten("#0072B2", .2), .3),
-     `99%` = desaturate(lighten("#0072B2", .4), .3)
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  scale_size_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = 2.25,
-     `95%` = 1.5,
-     `99%` = .75
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(14) +
-  theme(
-    plot.margin = margin(3, 82, 3, 1.5),
-    axis.line.x = element_line(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.title.x = element_text(hjust = 1),
-    legend.position = c(0, 0.01),
-    legend.justification = c(0, 0),
-    legend.key.height = grid::unit(7, "pt"),
-    legend.key.width = grid::unit(35, "pt"),
-    legend.spacing.x = grid::unit(7, "pt"),
-    legend.spacing.y = grid::unit(3.5, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
+    point_size = 4
   )
 ```
 
-Confidence intervals widen with smaller sample size.
+## Gradient interval {.smaller}
 
-## Mean chocolate flavor rating
-
-::: panel-tabset
-### Version 1
+`ggdist::stat_dist_gradientinterval()`:
 
 ```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-cacao_small <- 
-  cacao_small %>% 
-  mutate(location = fct_recode(location, U.S.A = "US")) # change to O'Reilly style
-
-fit <- lm(rating ~ location, data = cacao_small)
-
-conf_df <- data.frame(level = c(0.99, 0.95, 0.8)) %>%
-  mutate(df = map(level, ~tidy(emmeans(fit, ~location, options = list(level = .x), type = "response")))) %>%
-  unnest(cols = df) %>%
-  select(level, location, estimate, std.error, df) %>%
-  mutate(
-    conf.low = estimate - qt(1 - (1 - level) / 2, df) * std.error,
-    conf.high = estimate + qt(1 - (1 - level) / 2, df) * std.error,
-    level = paste0(signif(100 * level, 2), "%")
-  )
-
-ggplot(conf_df, aes(estimate, reorder(location, estimate))) + 
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level, size = level),
-    height = 0
-  ) +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level),
-    height = 0.2
-  ) +
-  geom_point(data = filter(conf_df, level == "80%"), size = 2.5, color = "#D55E00") +
-  scale_x_continuous(
-    limits = c(2.6, 3.6),
-#    expand = c(0, 0),
-    name = "mean rating"
-  ) +
- scale_y_discrete(
-#    position = "right",
-#    limits = rev(c("Canada.original data", "Canada.CI", "Switzerland.original data", "Switzerland.CI")),
-#    breaks = NULL,
-   name = NULL
-  ) +
-  scale_color_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = desaturate(darken("#0072B2", .2), .3),
-     `95%` = desaturate(lighten("#0072B2", .2), .3),
-     `99%` = desaturate(lighten("#0072B2", .4), .3)
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  scale_size_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = 2.25,
-     `95%` = 1.5,
-     `99%` = 0.75
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(14) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.ticks.x = element_line(color = "black"),
-    axis.title.x = element_text(hjust = 1),
-    legend.position = c(1, 0.01),
-    legend.justification = c(1, 0),
-    legend.key.height = grid::unit(7, "pt"),
-    legend.key.width = grid::unit(35, "pt"),
-    legend.spacing.x = grid::unit(7, "pt"),
-    legend.spacing.y = grid::unit(3.5, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
-  )
-```
-
-### Version 2
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-
-# need reference grid for contrasts
-fit_rg <- ref_grid(fit)
-
-contrasts_dunnettx <- data.frame(level = c(0.99, 0.95, 0.8)) %>%
-  mutate(
-    df = map(
-      level,
-      ~data.frame(confint(contrast(fit_rg, method = "trt.vs.ctrl1"), level = .x))
-    )
-  ) %>%
-  unnest() %>%
-  select(level, contrast, estimate, std.error = SE, conf.low = lower.CL, conf.high = upper.CL) %>%
-  mutate(
-    level = paste0(signif(100*level, 2), "%"),
-    contrast = stringr::str_extract(as.character(contrast), "[a-zA-Z]+")
-  )
-
-ggplot(contrasts_dunnettx, aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level, size = level),
-    height = 0
-  ) +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level),
-    height = 0.2
-  ) +
-  geom_point(data = filter(contrasts_dunnettx, level == "80%"), size = 2.5, color = "#D55E00") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    sec.axis = dup_axis(
-      name = NULL,
-      breaks = 0,
-      labels = "U.S.A mean rating"
-    )
-  ) +
-  scale_y_discrete(
-    name = NULL
-  ) +
-  scale_color_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = desaturate(darken("#0072B2", .2), .3),
-     `95%` = desaturate(lighten("#0072B2", .2), .3),
-     `99%` = desaturate(lighten("#0072B2", .4), .3)
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  scale_size_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = 2.25,
-     `95%` = 1.5,
-     `99%` = 0.75
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(14) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50"),
-    #axis.title.x = element_text(hjust = 1),
-    legend.position = c(1, 0.02),
-    legend.justification = c(1, 0),
-    legend.key.height = grid::unit(7, "pt"),
-    legend.key.width = grid::unit(35, "pt"),
-    legend.spacing.x = grid::unit(7, "pt"),
-    legend.spacing.y = grid::unit(3.5, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
-  )
-
-```
-:::
-
-## Approaches to visualizing uncertainty
-
-::: panel-tabset
-### Graded error bars
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-cacao_smaller <- filter(cacao_small, location != "Switzerland")
-
-fit <- lm(rating ~ location, data = cacao_smaller)
-fit_rg <- ref_grid(fit)
-
-contrasts_dunnettx <- data.frame(level = c(0.99, 0.95, 0.8)) %>%
-  mutate(
-    df = map(
-      level,
-      ~data.frame(confint(contrast(fit_rg, method = "trt.vs.ctrl1"), level = .x))
-    )
-  ) %>%
-  unnest(cols = "df") %>%
-  select(level, contrast, estimate, std.error = SE, conf.low = lower.CL, conf.high = upper.CL) %>%
-  mutate(
-    level = paste0(signif(100*level, 2), "%"),
-    contrast = stringr::str_extract(as.character(contrast), "[a-zA-Z]+")
-  )
-
-p1 <- ggplot(contrasts_dunnettx, aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level, size = level),
-    height = 0
-  ) +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level),
-    height = 0.2
-  ) +
-  geom_point(data = filter(contrasts_dunnettx, level == "80%"), size = 2.5, color = "#D55E00") +
-  ggtitle("With Cap") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    limits = c(-.65, .47),
-    expand = c(0, 0)
-  ) +
-  scale_y_discrete(name = NULL) +
-  scale_color_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = desaturate(darken("#0072B2", .2), .3),
-     `95%` = desaturate(lighten("#0072B2", .2), .3),
-     `99%` = desaturate(lighten("#0072B2", .4), .3)
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  scale_size_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = 1.5,
-     `95%` = 1,
-     `99%` = 0.5
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(12) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50"),
-    #axis.title.x = element_text(hjust = 1),
-    legend.position = "none",
-    #legend.position = c(1, .01),
-    legend.justification = c(1, 0),
-    legend.key.height = grid::unit(6, "pt"),
-    legend.key.width = grid::unit(30, "pt"),
-    legend.spacing.x = grid::unit(6, "pt"),
-    legend.spacing.y = grid::unit(3, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
-  )
-
-p2 <- ggplot(contrasts_dunnettx, aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high, color = level, size = level),
-    height = 0
-  ) +
-  geom_point(data = filter(contrasts_dunnettx, level == "80%"), size = 2.5, color = "#D55E00") +
-    ggtitle("Without Cap") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    limits = c(-.65, .47),
-    expand = c(0, 0)
-  ) +
-  scale_y_discrete(name = NULL) +
-  scale_color_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = desaturate(darken("#0072B2", .2), .3),
-     `95%` = desaturate(lighten("#0072B2", .2), .3),
-     `99%` = desaturate(lighten("#0072B2", .4), .3)
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  scale_size_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = 1.5,
-     `95%` = 1,
-     `99%` = 0.5
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(12) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50"),
-    #axis.title.x = element_text(hjust = 1),
-    legend.position = "none",
-    #legend.position = c(1, .01),
-    legend.justification = c(1, 0),
-    legend.key.height = grid::unit(6, "pt"),
-    legend.key.width = grid::unit(24, "pt"),
-    legend.spacing.x = grid::unit(6, "pt"),
-    legend.spacing.y = grid::unit(3, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
-  )
-
-plot_grid(
-  p1, p2)
-```
-
-### Single error bars
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-p3 <- ggplot(filter(contrasts_dunnettx, level == "95%"),
-             aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high),
-    height = 0.2
-  ) +
-  geom_point(size = 2.5, color = "#D55E00") +
-  ggtitle("With Cap") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    limits = c(-.65, .47),
-    expand = c(0, 0)
-  ) +
-  scale_y_discrete(name = NULL) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(12) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50")
-  )
-
-p4 <- ggplot(filter(contrasts_dunnettx, level == "95%"),
-             aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  geom_errorbarh(
-    aes(xmin = conf.low, xmax = conf.high),
-    height = 0
-  ) +
-  geom_point(size = 2.5, color = "#D55E00") +
-  ggtitle("Without Cap") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    limits = c(-.65, .47),
-    expand = c(0, 0)
-  ) +
-  scale_y_discrete(name = NULL) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(12) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50")
-  )
-
-plot_grid(
-  p3, p4)
-```
-
-### Confidence
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-p5 <- ggplot(filter(contrasts_dunnettx, level == "95%"),
-             aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  stat_confidence_density(
-    aes(moe = conf.high-estimate, fill = stat(ndensity)),
-    height = 0.7,
-    confidence = 0.95,
-    alpha = NA
-  ) +
-  geom_segment(
+#| label: gapminder-gradinterval
+#| output-location: column
+#| code-line-numbers: "|3-11"
+lm_data_1952 |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_gradientinterval(
     aes(
-      x = estimate, xend = estimate,
-      y = as.integer(reorder(contrast, estimate)) - 0.35,
-      yend = as.integer(reorder(contrast, estimate)) + 0.35
+      dist = dist_normal(
+        mu = estimate, sigma = std.error
+      )
     ),
-    size = 2, color = "#D55E00"
-  ) +
-  ggtitle("Stripes") +
-  scale_fill_gradient(low = "#81A7D600", high = "#345A7FD0") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    limits = c(-.65, .47),
-    expand = c(0, 0)
-  ) +
-  scale_y_discrete(name = NULL) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(12) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50")
+    point_size = 4,
+    fill = "skyblue"
   )
+```
 
+## Dots interval {.smaller}
 
-p6 <- ggplot(filter(contrasts_dunnettx, level == "95%"),
-             aes(x = estimate, y = reorder(contrast, estimate))) +
-  geom_vline(xintercept = 0, linetype = 2, color = "gray50") +
-  stat_confidence_density(
-    aes(moe = conf.high-estimate, height = stat(density)),
-    geom = "ridgeline",
-    confidence = 0.95,
-    scale = 0.2,
-    min_height = 0.001,
-    alpha = 0.7,
-    fill = "#81A7D6",
-    size = 0.4
-  ) +
-  geom_segment(
+`ggdist::stat_dist_dotsinterval()`:
+
+```{r}
+#| label: gapminder-quantiledots
+#| output-location: column
+#| code-line-numbers: "|3-12"
+lm_data_1952 |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_dotsinterval(
     aes(
-      x = estimate, xend = estimate,
-      y = as.integer(reorder(contrast, estimate)) - 0.2,
-      yend = as.integer(reorder(contrast, estimate)) + 0.5
+      dist = dist_normal(
+        mu = estimate, sigma = std.error
+      )
     ),
-    size = 2, color = "#D55E00"
-  ) +
-  ggtitle("Distributions") +
-  scale_fill_gradient(low = "#81A7D600", high = "#345A7FD0") +
-  scale_x_continuous(
-    name = "difference in mean rating",
-    limits = c(-.65, .47),
-    expand = c(0, 0)
-  ) +
-  scale_y_discrete(name = NULL) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(12) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.line.x.top = element_blank(),
-    axis.ticks.x = element_line(color = "black"),
-    axis.ticks.x.top = element_line(color = "gray50"),
-    axis.text.y = element_text(vjust = 0)
-  )
-plot_grid(
-  p5, p6)
-```
-:::
-
-Which approach is best? Why?
-
-## Advantages of error bars
-
-::: panel-tabset
-### Bar plots
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-cows %>% filter(breed != "Canadian") %>%
-  mutate(breed = as.character(breed)) %>%
-  group_by(breed) %>%
-  summarize(
-    mean = mean(butterfat),
-    se = sd(butterfat)/sqrt(n())
-  ) %>%
-  mutate(breed = fct_reorder(factor(breed), desc(mean)))-> cow_means
-
-ggplot(cow_means, aes(x = breed, y = mean, ymin = mean - 1.96*se, ymax = mean + 1.96*se)) +
-  geom_col(fill = "#56B4E9", alpha = 0.7, width = 0.7) +
-  #geom_linerange(size = 0.75) +
-  geom_errorbar(size = 0.5, width = 0.1) +
-  scale_x_discrete(
-    labels = c("Jersey", "Guernsey", "Ayrshire", "Holstein-\nFriesian"),
-    name = NULL
-  ) +
-  scale_y_continuous(
-    name = "mean butterfat contents", expand = c(0, 0),
-    labels = scales::percent_format(accuracy = 1, scale = 1)
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid() +
-  theme(axis.line.x = element_blank())
-```
-
-### Scatter plots
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-filter(US_income_age, state == "Pennsylvania") %>%
-  ggplot(aes(age, income)) + 
-  geom_errorbarh(
-    aes(xmin = age - age.moe, xmax = age + age.moe),
-    height = 0,
-    color = "#0072B2"
-  ) +
-  geom_errorbar(
-    aes(ymin = income - income.moe, ymax = income + income.moe),
-    width = 0,
-    color = "#0072B2"
-  ) +
-  geom_point(color = "#0072B2", size = 0.7) +
-  scale_x_continuous(name = "median age (years)") +
-  scale_y_continuous(
-    name = "median income (USD)",
-    labels = scales::dollar
-  ) +
-  theme_dviz_open()
-```
-:::
-
-## Confidence intervals
-
-<iframe src="https://rpsychologist.com/d3/ci/" style="width:100%; height:500px;">
-
-</iframe>
-
-## Bayesian statistics
-
-::: panel-tabset
-### Credibility intervals
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-linear_results <-
-  lm(rating ~ location, data = cacao_small) %>% 
-  emmeans(~ location) %>%
-  as_tibble() %>%
-  rename(estimate = emmean, std.error = SE, conf.low = lower.CL, conf.high = upper.CL) %>%
-  mutate(model = "OLS")
- 
-# store these separately, will need them again
-bayes_emmeans <- cacao_mcmc %>%
-  emmeans(~ location) %>%
-  gather_emmeans_draws()
-
-bayes_results <- bayes_emmeans %>%
-  mean_qi() %>%
-  to_broom_names() %>%
-  mutate(model = "Bayes")
-
-bind_rows(linear_results, bayes_results) %>%
-  mutate(model = factor(model, levels = c("Bayes", "OLS"))) %>%
-  ggplot(aes(x = estimate, y = reorder(location, estimate), xmin = conf.low, xmax = conf.high, color = model)) +
-  ggplot2::geom_errorbarh(position = ggstance::position_dodgev(height = 0.7), height = 0.2) +
-  geom_point(position = ggstance::position_dodgev(height = .7), size = 2.5) +
-  scale_x_continuous(
-    limits = c(2.6, 3.6),
-#    expand = c(0, 0),
-    name = "mean rating"
-  ) +
-  scale_y_discrete(name = NULL) +
-  scale_color_manual(
-    name = NULL,
-    values = c(
-      OLS = "grey40",
-      Bayes = desaturate(darken("#0072B2", .2), 0.1)
-    ),
-    breaks = c("OLS", "Bayes"),
-    labels = c("95% confidence interval", "95% credible interval")
-    #guide = guide_legend(direction = "horizontal")
-  ) +
-  coord_cartesian(clip = "off") +
-  theme_dviz_hgrid(14, rel_small = 1) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.ticks.x = element_line(color = "black"),
-    axis.title.x = element_text(hjust = 1),
-    legend.position = c(1, 0.013),
-    legend.justification = c(1, 0),
-    legend.key.height = grid::unit(15, "pt"),
-    legend.key.width = grid::unit(28, "pt"),
-    legend.spacing.x = grid::unit(3.5, "pt"),
-    legend.spacing.y = grid::unit(14, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
+    point_size = 4,
+    fill = "skyblue",
+    quantiles = 20
   )
 ```
 
-### Posterior distributions
+## Dots interval {.smaller}
+
+`ggdist::stat_dist_dotsinterval()`:
 
 ```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-bayes_emmeans %>%
-  ggplot(aes(.value, reorder(location, .value))) +
-  geom_density_ridges_gradient(
-    aes(fill = factor(stat(quantile))),
-    quantiles = c(0.005, 0.025, 0.1, 0.9, 0.975, 0.995),
-    calc_ecdf = TRUE,
-    scale = 1.5,
-    color = darken("#0072B2", .4),
-    size = 0.3,
-    rel_min_height = 0.005
-  ) +
-  geom_point(
-    stat = ggstance:::StatSummaryh,
-    fun.x = median,
-    size = 2.5, color = "#D55E00"
-  ) +
-  scale_x_continuous(
-    name = "mean rating"
-  ) +
-  scale_y_discrete(name = NULL) +
-  scale_fill_manual(
-    name = "posterior prob.",
-    values = c(
-      "#00000000",
-      "#81A7D6A0", 
-      "#508CC6A0", 
-      "#035B8FA0", 
-      "#508CC6A0",
-      "#81A7D6A0",
-      "#00000000"
-    ),
-    labels = c("0.5%", "2.5%", "10%", "80%", "90%", "97.5%", "99.5%"),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom",
-      override.aes = list(color = NA),
-      nrow = 1
-    )
-  ) + 
-  coord_cartesian(xlim = c(2.6, 3.6), clip = "off") +
-  theme_dviz_hgrid(14) +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.ticks.x = element_line(color = "black"),
-    axis.title.x = element_text(hjust = 1),
-    legend.position = "bottom",
-    legend.key.height = grid::unit(14, "pt"),
-    legend.key.width = grid::unit(35, "pt"),
-    legend.spacing.x = grid::unit(7, "pt"),
-    legend.spacing.y = grid::unit(3.5, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title.align = 0.5
-  )
-```
-:::
-
-## Uncertainty of curve fits
-
-::: panel-tabset
-### Best linear fit
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-blue_jays_male <- filter(blue_jays, KnownSex == "M")
-
-fit <- gam(Head ~ Mass, data = blue_jays_male, method = "REML")
-
-newdata <- data.frame(Mass = seq(59, 82, length.out = 100))
-
-sample_df <- sample_outcomes(fit, newdata, 15, unconditional = TRUE)
-ci_df <- confidence_band(fit, newdata, unconditional = TRUE)
-
-ggplot(blue_jays_male, aes(Mass, Head)) + 
-  geom_ribbon(data = ci_df, aes(ymin = lo, ymax = hi), fill="grey70", color = NA, alpha = 1/2) +
-  geom_point(color = "grey60", size = 1.5) +
-  #geom_line(data = sample_df, aes(group = .draw), color = "#0072B2", size = 0.3) +
-  geom_line(data = ci_df, color = "#0072B2", size = 1) +
-  scale_x_continuous(
-    limits = c(59, 82),
-    expand = c(0, 0),
-    name = "body mass (g)") +
-  scale_y_continuous(
-    limits = c(52, 61),
-    expand = c(0, 0),
-    name = "head length (mm)"
-  ) +
-  theme_dviz_open()
-```
-
-### Alternative fits
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-ggplot(blue_jays_male, aes(Mass, Head)) + 
-  geom_ribbon(data = ci_df, aes(ymin = lo, ymax = hi), fill="grey70", color = NA, alpha = 1/2) +
-  geom_point(color = "grey60", size = 1.5) +
-  geom_line(data = sample_df, aes(group = .draw), color = "#0072B2", size = 0.3) +
-  #geom_line(data = ci_df, color = "#0072B2", size = 1) +
-  scale_x_continuous(
-    limits = c(59, 82),
-    expand = c(0, 0),
-    name = "body mass (g)") +
-  scale_y_continuous(
-    limits = c(52, 61),
-    expand = c(0, 0),
-    name = "head length (mm)"
-  ) +
-  theme_dviz_open()
-```
-
-### Confidence bands
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-
-ci_99_df <- confidence_band(fit, newdata, level = 0.99, unconditional = TRUE)
-ci_80_df <- confidence_band(fit, newdata, level = 0.80, unconditional = TRUE)
-
-ggplot(blue_jays_male, aes(Mass, Head)) + 
-  geom_ribbon(
-    data = ci_99_df,
-    aes(ymin = lo, ymax = hi, fill = "99%"),
-    color = NA
-  ) +
-  geom_ribbon(
-    data = ci_df,
-    aes(ymin = lo, ymax = hi, fill = "95%"),
-    color = NA
-  ) +
-  geom_ribbon(
-    data = ci_80_df,
-    aes(ymin = lo, ymax = hi, fill = "80%"),
-    color = NA
-  ) +
-  geom_point(color = "grey40", size = 1.5) +
-  geom_line(data = ci_df, color = darken("#0072B2", .4), size = 1) +
-  scale_fill_manual(
-    name = "confidence level",
-    values = c(
-     `80%` = desaturate(lighten("#0072B2", .4), .3),
-     `95%` = desaturate(lighten("#0072B2", .6), .3),
-     `99%` = desaturate(lighten("#0072B2", .8), .3)
-    ),
-    guide = guide_legend(
-      direction = "horizontal",
-      title.position = "top",
-      label.position = "bottom"
-    )
-  ) +
-  scale_x_continuous(
-    limits = c(59, 82),
-    expand = c(0, 0),
-    name = "body mass (g)"
-  ) +
-  scale_y_continuous(
-    limits = c(52, 61),
-    expand = c(0, 0),
-    name = "head length (mm)"
-  ) +
-  theme_dviz_open() +
-  theme(
-    legend.position = c(1, .01),
-    legend.justification = c(1, 0),
-    legend.key.height = grid::unit(12, "pt"),
-    legend.key.width = grid::unit(30, "pt"),
-    legend.spacing.x = grid::unit(6, "pt"),
-    legend.spacing.y = grid::unit(3, "pt"),
-    legend.box.background = element_rect(fill = "white", color = NA),
-    legend.box.spacing = grid::unit(0, "pt"),
-    legend.title = element_text(size = 12, hjust = 0.5)
-  )
-```
-:::
-
-## Non-linear outcomes
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-
-set.seed(8692282)
-
-fit <- gam(mpg ~ s(disp, bs = 'cr', k = 5), data = mtcars, method = "REML")
-#fit <- gam(mpg ~ s(disp, bs = 'ts', k = 6), data = mtcars, method = "REML")
-
-newdata <- data.frame(disp = seq(min(mtcars$disp), max(mtcars$disp), length.out = 100))
-sample_df <- sample_outcomes(fit, newdata, 10, unconditional = TRUE)
-ci_df <- confidence_band(fit, newdata, unconditional = TRUE)
-
-cars_base <- ggplot(mtcars, aes(x = disp, y = mpg)) + 
-  scale_x_continuous(
-    name = "displacement (cu. in.)",
-    expand = c(0.01, 0)
-  ) +
-  ylab("fuel efficiency (mpg)") +
-  theme_dviz_grid(12) +
-  theme(plot.margin = margin(6, 1.5, 3, 1.5))
-
-p1 <- cars_base +
-  geom_ribbon(data = ci_df, aes(ymin = lo, ymax = hi), fill="grey70", color = NA, alpha = 1/2) +
-  geom_point(color = "grey60") +
-  geom_line(data = ci_df, color = "#0072B2", size = 1) +
-  ggtitle("Best fit")
-
-p2 <- cars_base +
-  geom_ribbon(data = ci_df, aes(ymin = lo, ymax = hi), fill="grey70", color = NA, alpha = 1/2) +
-  geom_point(color = "grey60") +
-  geom_line(data = sample_df, aes(group = .draw), color = "#0072B2", size = 0.3) +
-  ggtitle("Alternative fit")
-
-plot_grid(
-  p1, NULL, p2, align = 'hv',
-  nrow = 1,
-  rel_widths = c(1, .02, 1)
-)
-```
-
-## Hypothetical outcome plot
-
-::: panel-tabset
-### Chocolate ratings
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-#| eval: false
-
-set.seed(49316)
-n <- 30
-
-animation::ani.options(ani.res = 1000)
-
-CA_ratings <- sample_n(filter(cacao_US_CA, location == "Canada"), n, replace = TRUE) %>%
-  mutate(.draw = 1:n())
-
-US_ratings <- sample_n(filter(cacao_US_CA, location == "US"), n, replace = TRUE) %>%
-  mutate(.draw = 1:n())
-
-sample_df <- rbind(CA_ratings, US_ratings) %>%
-  mutate(location = fct_relevel(location, "US", "Canada"))
-
-p <- ggplot(sample_df) +
-  geom_segment(
+#| label: gapminder-quantiledots2
+#| output-location: column
+#| code-line-numbers: "|11"
+lm_data_1952 |>
+  ggplot(aes(x = estimate, y = continent)) +
+  stat_dist_dotsinterval(
     aes(
-      x = rating, xend = rating,
-      y = as.integer(location) - 0.35,
-      yend = as.integer(location) + 0.35,
-      group = .draw
+      dist = dist_normal(
+        mu = estimate, sigma = std.error
+      )
     ),
-    size = 1.5, color = darken("#009E73", .3)
-  ) +
-  scale_x_continuous(
-    limits = c(1.95, 4.1),
-    expand = c(0, 0),
-    name = "chocolate flavor rating"
-  ) +
-  scale_y_discrete(
-    name = NULL,
-    limits = c("US", "Canada"),
-    expand = c(0, 0.25)
-  ) +
-  theme_dviz_hgrid() +
-  theme(
-    axis.line.x = element_line(color = "black"),
-    axis.ticks.x = element_line(color = "black"),
-    axis.title.x = element_text(hjust = 1),
-    axis.line.y = element_blank(),
-    axis.ticks.y = element_blank(),
-    strip.text = element_blank()
-  ) + 
-  #panel_border() +
-  transition_states(.draw, 1, 2)
-
-animate(p, height = 5,
-  width = 10, units = "in", res = 1000)
-
-anim_save("hypoOutcome.gif")
+    point_size = 4,
+    fill = "skyblue",
+    quantiles = 10
+  )
 ```
 
-![](images/hypoOutcome.gif)
+## Further reading and acknowledgements {.smaller}
 
-### Fuel efficiency vs. displacement
-
-```{r}
-#| message: false
-#| warning: false
-#| echo: false
-#| fig-asp: 0.5
-#| eval: false
-
-set.seed(8692276)
-
-fit <- gam(mpg ~ s(disp, bs = 'cr', k = 5), data = mtcars, method = "REML")
-
-newdata <- data.frame(disp = seq(min(mtcars$disp), max(mtcars$disp), length.out = 100))
-sample_df <- sample_outcomes(fit, newdata, 20, unconditional = TRUE)
-
-p <- ggplot(mtcars, aes(x = disp, y = mpg)) + 
-  scale_x_continuous(
-    name = "displacement (cu. in.)",
-    expand = c(0.03, 0)
-  ) +
-  scale_y_continuous(
-    name = "fuel efficiency (mpg)",
-    limits = c(8.5, 35),
-    expand = c(0, 0)
-  ) +
-  geom_point(color = "grey60") +
-  geom_line(data = sample_df, aes(group = .draw), color = "#0072B2", size = 0.5) +
-  theme_dviz_grid() +
-  theme(
-    strip.text = element_blank(),
-    axis.ticks = element_blank(),
-    axis.ticks.length = unit(0, "pt"),
-    plot.margin = margin(7, 1.5, 3.5, 1.5)
-  ) +
-  panel_border() +
-  transition_states(.draw, 0, 1)
-
-animate(p, height = 5,
-  width = 10, units = "in", res = 1000)
-
-anim_save("hypoOutcome_2.gif")
-```
-
-![](images/hypoOutcome_2.gif)
-:::
+-   Acknowledgements: Slides from [Visualizing uncertainty](https://wilkelab.org/SDS375/slides/visualizing-uncertainty.html) by Claus Wilke
+-   Further reading
+    -   Fundamentals of Data Visualization: [Chapter 16: Visualizing uncertainty](https://clauswilke.com/dataviz/visualizing-uncertainty.html)
+    -   Data Visualization—A Practical Introduction: [Chapter 6.6: Grouped analysis and list columns](https://socviz.co/modeling.html#grouped-analysis-and-list-columns)
+    -   Data Visualization—A Practical Introduction: [Chapter 6.7: Plot marginal effects](https://socviz.co/modeling.html#plot-marginal-effects)
+    -   **ggdist** reference documentation: https://mjskay.github.io/ggdist/index.html
+    -   **ggdist** vignette: [Frequentist uncertainty visualization](https://mjskay.github.io/ggdist/articles/freq-uncertainty-vis.html)

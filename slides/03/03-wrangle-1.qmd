@@ -13,14 +13,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   HW 1 due Monday, Jan 29 at 11:59pm, make sure all checks are passing!
--   See #random on Slack for playlist request
--   Office Hours: Come with questions on HW 1, particularly Questions 1-4.
-
 ## Setup {.smaller}
 
 ```{r}
@@ -30,7 +22,6 @@ editor_options:
 # load packages
 library(tidyverse)
 library(glue)
-library(lubridate)
 library(scales)
 library(countdown)
 

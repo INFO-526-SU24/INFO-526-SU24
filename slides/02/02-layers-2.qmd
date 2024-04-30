@@ -13,21 +13,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   Thank you for filling out the survey!
-
--   At this point everyone should be:
-
-    -   On Slack, in public channels for #general, #homework, #course-questions, #project-1, #project-2, #quizzes, and #random
-    -   Make sure your profile photo/avatar and name matches between GitHub and Slack.
-
--   RQ 1 is due Friday, Jan 26
-
--   HW 1 is live on the course website, due Monday (Jan 29).
-
 ## Setup {.smaller}
 
 ```{r}

@@ -23,8 +23,13 @@ This content is derived from the course website for [STA 313 - Advanced Data Vis
 
 Additional content from resources and guides are derived from the open source content from [PMAP 8551/4551 - Data Visualization with R](https://datavizf23.classes.andrewheiss.com/) taught by Dr. Andrew Heiss at Georgia State University. I changed styling where appropriate. This content is licensed under a [Creative Commons Attribution-NonCommercial 4.0 International license (CC BY-NC 4.0)](https://creativecommons.org/licenses/by-nc/4.0/).
 
-[![](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png){width="88"}](https://creativecommons.org/licenses/by-sa/4.0/)
+<a href="https://creativecommons.org/licenses/by-nc/4.0/">
+    <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-nc.png" width="88">
+</a>
+
 
 This remaining online work is licensed under a [Creative Commons Attribution-ShareAlike 4.0 International](https://creativecommons.org/licenses/by-sa/4.0/). Visit [here](https://github.com/dukestatsciintrods/blob/master/LICENSE.md) for more information about the license.
 
-![](https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png){width="88"}
+<a href="https://creativecommons.org/licenses/by-sa/4.0/">
+    <img src="https://mirrors.creativecommons.org/presskit/buttons/88x31/png/by-sa.png" width="88">
+</a>

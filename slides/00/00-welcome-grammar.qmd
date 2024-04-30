@@ -21,17 +21,9 @@ auto-stretch: false
 
 Dr. Greg Chism
 
-Office: Harvill 420,
+Office: Online via Zoom
 
 [gchism\@arizona.edu](mailto:gchism@arizona.edu)
-:::
-
-::: {.column width="50%"}
-### Teaching assistant
-
-Laura Dozal
-
-[lwerthmann\@arizona.edu](mailto:lwerthmann@arizona.edu)
 :::
 :::
 
@@ -40,8 +32,8 @@ Laura Dozal
 -   Lectures (weekly)
     -   Mondays, 11:00am - 12:15 pm - McClelland Park, RM 103
     -   Wednesdays, 11:00am - 12:15 pm - McClelland Park, RM 103
--   Meeting dates
-    -   01/10/2023 - 05/06/2023
+-   Course dates
+    -   05/13/2024 - 06/28/2024
 
 ## Themes: what, why, and how {.smaller}
 
@@ -63,22 +55,6 @@ Laura Dozal
 -   **Why:** the theory
     -   Tie together "how" and "what" through the grammar of graphics
 
-# But first...
-
-## Show and tell {.smaller}
-
-::: task
--   Form a small group (2-4 people) with people sitting around you
-
--   First, introduce yourselves to each other -- name (and proper pronunciation of name), year, major, where are you from, etc.
-
--   Start what you think makes a graph/plot "bad".
-
--   Then, discuss what makes a graph/plot "good".
-
--   Finally, choose the **one** plot discussion from your group, either "bad" or "good", and have one team member share the discussion on #general in Slack.
-:::
-
 # Course components
 
 ## Course website
@@ -99,17 +75,13 @@ aka "the one link to rule them all"
 
 ## Lectures {.smaller}
 
--   In person
+-   Asynchronous online (recorded)
 
--   Attendance is required (as long as you're healthy!)
+-   Content:
 
--   A little bit of everything:
-
-    -   Traditional lecture
+    -   Traditional lecture (mostly)
 
     -   Live coding + demos
-
-    -   Short exercises + solution discussion
 
 ## Announcements
 
@@ -141,68 +113,53 @@ It is my intent that students from all diverse backgrounds and perspectives be w
 
 -   Required throughout the semester in lecture
 
--   Students who attend at least 80% of the lectures and participate regularly in lecture and/or other course venues (Slack) will receive full credit for this portion of their grade
+-   Students who regularly participate in slack and answer peer questions
 
 ## Reading quizzes (10%)
 
 -   Online, individual
 -   Cover reading that is due since the previous quiz and up to and including the deadline for the given quiz
--   Due by 11:59 pm AZ Time on the indicated day on the course schedule
--   **Lowest dropped**
+-   Due by 5 pm AZ Time on the indicated day on the course schedule
 
 ## Homework assignments (45%)
 
 -   Submitted on GitHub, individual
--   Some lab sessions allocated to working on homework / getting feedback from your TA
--   Due by 11:59 pm AZ Time on the indicated day on the course schedule
--   **Lowest dropped**
+-   Due by 5 pm AZ Time on the indicated day on the course schedule
 
-## Projects (40%)
+## Final Project (40%)
 
--   Submitted on GitHub, team-based
+-   Submitted on GitHub, team-based (pairs)
 
 -   Interim deadlines, peer review on content, peer evaluation for team contribution
 
 ## Teams
 
 -   Team assignments
-    -   Projects
-    -   Assigned different teams for each project
+    -   Project
     -   Peer evaluation during teamwork and after completion
 -   Expectations and roles
     -   Everyone is expected to contribute equal *effort*
     -   Everyone is expected to understand *all* code turned in
     -   Individual contribution evaluated by peer evaluation, commits, etc.
 
-## Project 1 (15%)
+## Final Project (40%)
 
 -   Same/similar data, different results
 
 -   Presentation and write-up
 
--   Wrapped up before midterms grades are due
-
-## Project 2 (25%)
-
--   The world is your oyster! (and more details TBA)
-
--   New team
-
--   Presentation and write-up
-
--   Wrapped up on the final exam date
+-   Wrapped up before final class date
 
 ## Grading {.smaller}
 
 This course is assessed 100% on your coursework (there is no exam). We will be assessing you based on the following assignments,
 
-| Assignment                 | Type       | Value | n   | Due                                        |
-|:------------|:------------|:------------|:------------|--------------------|
-| Attendance + participation | Individual | 5%    |     |                                            |
-| Reading quizzes            | Individual | 10%   | 6   | \~ Every other week                        |
-| Homeworks                  | Individual | 45%   | 6   | \~ Every other week                        |
-| Project 1                  | Team       | 15%   | 1   | \~ Week 6 + earlier interim deadlines      |
-| Project 2                  | Team       | 25%   | 1   | \~ Finals week + earlier interim deadlines |
+| Assignment                 | Type       | Value | n   | Due                                       |
+|:-------------|:-------------|:-------------|:-------------|----------------|
+| Attendance + participation | Individual | 5%    |     |                                           |
+| Reading quizzes            | Individual | 10%   | 6   | \~ Every other week                       |
+| Homeworks                  | Individual | 45%   | 6   | \~ Every other week                       |
+| Final Project              | Team       | 40%   | 1   | \~ Final week + earlier interim deadlines |
 
 ## Community participation
 
@@ -215,56 +172,30 @@ This is not required but highly recommended! ([Extra credit of up to 1 HW assign
 
 ## COVID policies
 
--   Wear a mask if the university requires
-
--   Stay home if you're sick and follow guidance
-
--   Read and follow university guidance
-
 ## Late work policy {.smaller}
 
 -   Reading quizzes: Late submissions not accepted
 
 -   Homework assignments:
 
-    -   Late, but next day (before noon): -10% of available points
-    -   Late, but next day (after noon): -20% of available points
+    -   Late, but next day (before 5pm): -10% of available points
+    -   Late, but next day (after 5pm): -20% of available points
     -   Two days late or later: No credit, and we will not provide written feedback
 
 -   Project presentations: Late submissions not accepted
 
--   Project write-ups:
-
-    -   Late, but next day (before noon): -10% of available points
-    -   Late, but next day (after noon): -20% of available points
-    -   Two days late or later: No credit, and we will not provide written feedback
+-   Project presentations: Late submissions not accepted
 
 -   Peer evaluation:
 
     -   Late submissions not accepted
     -   Must turn in peer evaluation if you want your own score from others
 
-## Free passes
-
-Three "free passes" for the semester
-
-::: incremental
--   1 pass = 1 whole day extension
-
--   Passes can be stacked up to 3
-
--   Once they're gone, that's it...
-
--   ...so use them wisely!
-
--   *Hint: like during midterms...*
-:::
-
 ## Collaboration policy
 
--   Only work that is clearly assigned as team work should be completed collaboratively (Projects)
+-   Only work that is clearly assigned as team work should be completed collaboratively (Final Project)
 
--   Reading quizzes must be completed individually, you may not discuss answers with teammates, clarification questions should only be asked to myself and the TAs
+-   Reading quizzes must be completed individually, you may not discuss answers with teammates, clarification questions should only be asked to myself
 
 -   Homework assignments must be completed individually. You may not directly share answers / code with others, however you are welcome to discuss the problems in general and ask for advice
 
@@ -308,16 +239,6 @@ ask if you're not sure if something violates a policy!
 
 -   Greg:
 
-    -   Mondays 1 - 2 pm - Harvill 420
-
-        -   Except Mon, Jan 15 (MLK Holiday)
-
-        -   Any other exceptions will be announced in class / by email
-
-    -   By appointment - Zoom or Harvill 420
-
--   Laura
-
     -   By appointment - Zoom
 
 -   \+ lots more resources listed on the syllabus!
@@ -349,7 +270,7 @@ I want to make sure that you learn everything you were hoping to learn from this
 ## GitHub {.smaller}
 
 ::: {.large style="text-align: center;"}
-<https://github.com/INFO-526-S24>
+<https://github.com/INFO-526-SU24>
 :::
 
 -   All of your work and your membership (enrollment) in the organization is private
@@ -395,10 +316,6 @@ Some brief advice about selecting your account names (particularly for GitHub),
 -   Once you join, browse the channels to make sure you're posting questions in the right channel, update your profile with your name, photo/avatar of you that matches your GitHub profile, and your pronouns
 
 -   **Unfortunately** Slack is **not** the best place to ask coding questions, but it's a great place for real-time connection and collaboration
-
-::: task
-Demo on Monday for asking good questions with proper code formatting.
-:::
 
 ## Before the weekend
 

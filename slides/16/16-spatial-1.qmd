@@ -14,29 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   HW 4 due Wednesday, April 3rd
--   Project 2 proposals for peer review due Wednesday, April 3rd -- start working on them today
-
-## Note
-
-::: {.callout-important icon="false"}
-## tidyverse is a meta-package
-
-Loading the tidyverse loads the following packages:
-
-```{r}
-#| message: true
-
-library(tidyverse)
-```
-
-So you never need to load `dplyr`, `ggplot2`, `readr`, etc. separately if you've already loaded the `tidyverse` package.
-:::
-
 ## Setup {.smaller}
 
 ```{r}
@@ -45,7 +22,7 @@ So you never need to load `dplyr`, `ggplot2`, `readr`, etc. separately if you've
 
 # load packages
 library(countdown)
-# library(tidyverse) - already loaded
+library(tidyverse)
 library(mapproj)
 library(sf)
 library(geofacet)

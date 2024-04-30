@@ -14,12 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   Proposal regrades pending, but you can keep working on your projects
-
 ## Setup {.smaller}
 
 ```{r}
@@ -140,14 +134,13 @@ list_of_files
 # keeping track of the file name in a new column called year
 pac <- read_csv(list_of_files, id = "year")
 pac <- pac |>
-  janitor::clean_names() |>
+  janitor::clean_names() |> 
   mutate(
-    year = str_remove(year, "/Users/gchism/Desktop/INFO526-S24/slides/10/data/Foreign Connected PACs, "),
-    year = str_remove(year, ".csv")
-  ) |>
-  separate(year, into = c("year_discard", "year"), convert = TRUE) |>
+    year = str_extract(year, "\\d{4}-\\d{4}"),  # This extracts the year range like '1999-2000'
+    year = str_extract(year, "\\d{4}$"),  # This extracts the last year in the range
+  year = as.numeric(year)) |>
   separate(country_of_origin_parent_company, into = c("country_of_origin", "parent_company"), sep = "\\/", extra = "merge") |>
-  select(-year_discard, -total) |>
+  select(-total) |>
   mutate(
     dems = str_remove(dems, "\\$"),
     repubs = str_remove(repubs, "\\$"),
@@ -167,7 +160,6 @@ country_yearly_totals <- pac_longer |>
   filter(country_of_origin == "UK") |>
   group_by(year, party) |>
   summarise(total_amount = sum(amount), .groups = "drop")
-
 ```
 
 ```{r}

@@ -14,13 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# Warm up
-
-## Announcements
-
--   Project 01 Presentations Monday Mar 11 during class
--   Project 01 Write-ups due Monday Mar 11 11:59pm
-
 ## Setup {.smaller}
 
 ```{r}

@@ -1,5 +1,5 @@
 ---
-title: "Project 1"
+title: "Final Project"
 ---
 
 For this project, you will be using a dataset from the TidyTuesday project. You can choose any dataset you want from the datasets released in 2024 as part of this project: <https://github.com/rfordatascience/tidytuesday/tree/master/data/2024#readme>. Your task for the project is to come up with two questions to answer, answer them with data visualizations, and write-up and present your method and findings. You will also get to peer review others' projects.
@@ -18,19 +18,21 @@ Each of the two questions you come up with should involve more than two variable
 
 ## Workflow
 
--   Week 1 of project (week of January 30): Choose a dataset and write up your proposal in `proposal.qmd`.
+-   Week 1 of project (week of May 13th): Choose a dataset and write up your proposal in `proposal.qmd`.
 
--   Week 2 of project (week of February 05): Provide peer review to two other teams in the form of issues in their GitHub repos, address the issues left on your team's project repo by closing them with explicit commits. Feel free to get started on your presentation as well.
+-   Week 2 of project (week of May 20): Provide peer review to two other teams in the form of issues in their GitHub repos, address the issues left on your team's project repo by closing them with explicit commits. Feel free to get started on your presentation as well.
 
--   Week 3 of project (week of February 12): Review feedback from me on your proposal and close any remaining issues. Work on your presentation in `presentation.qmd` and write-up in `index.qmd`.
+-   Week 3 of project (week of May 27): Review feedback from me on your proposal and close any remaining issues. Work on your presentation in `presentation.qmd` and write-up in `index.qmd`.
 
--   Weeks 4-5 of project (week of February 19, 26): Finalize your write-up, presentation, and your project website. Present in class on the Monday after Spring Break (March 11th).
+-   Weeks 4-5 of project (weeks of June 3, 10): Work on project
+
+-   Week 6 of project (week of June 17): Finalize your write-up, presentation, and your project website. Record presentation for class by Monday (June 24th).
 
 ## Due dates
 
--   Proposals for peer review: due on Wednesday, February 07 at 11:00am.
--   Revised proposals for teaching team review: due Monday, February 12 at 11:59pm.
--   Write-up and presentation: due Monday, March 11 at the **beginning** of class.
+-   Proposals for peer review: due on Wednesday, May 29 at 5pm.
+-   Revised proposals for teaching team review: due Monday, June 03 at 5pm.
+-   Write-up and presentation: due Monday, June 24th at 5pm.
 
 ## Deliverables
 
@@ -62,13 +64,14 @@ Your proposal should include:
 
 #### Reviewer tasks {.unnumbered}
 
-Each team will review the proposals of two other teams. The peer review will be completed during class on **Wednesday, February 07**. On that day teams will have access to the project repos of the two teams whose work they're reviewing. Reviews should start by cloning the team's repo, re-rendering it locally to make sure you can reproduce their work, and then adding an issue to their repo with your peer review feedback.
+Each team will review the proposals of two other teams. The peer review must be completed on **Wednesday, May 29**. On that day teams will have access to the project repos of the two teams whose work they're reviewing. Reviews should start by cloning the team's repo, re-rendering it locally to make sure you can reproduce their work, and then adding an issue to their repo with your peer review feedback.
 
-**The reviewer / reviewee assignments are as follows**:
+**The reviewer / reviewee assignments are as TBD**:
 
 ```{r}
 #| message: false
 #| echo: false
+#| eval: false
 if (!require(pacman))
   install.packages("pacman")
 pacman::p_load(tidyverse,
@@ -113,11 +116,12 @@ You are not required to perform any statistical tests in this project, but you m
 
 Your presentation should generally follow the same structure as your write-up. Each team will have 5 minutes for their presentation, and each team member must speak (roughly equally) during this time. Your presentation will be created using Quarto, which allows you to write slides using the same Quarto structure you're used to. There is a sample Quarto slide template in your repo you can edit to your heart's desire to create your presentation. Roughly I recommend 1 slide for introduction, 2 slides for Question 1, ans 2 slides for Question 2. You can imagine spending roughly one minute on each slide. You should feel free to have more (or fewer) slides. Your evaluation will be based on your content, professionalism (including sticking to time), and your performance during the Q&A (question and answer). We don't care how many slides you use to do this.
 
-#### **The reviewer / reviewee assignments for presentation peer-review are as follows**:
+#### **The reviewer / reviewee assignments for presentation peer-review are TBD**:
 
 ```{r}
 #| message: false
 #| echo: false
+#| eval: false
 if (!require(pacman))
   install.packages("pacman")
 pacman::p_load(tidyverse,
@@ -130,7 +134,7 @@ Also find the rubric [here](https://datavizaz.org/project/project-1#reviewee-tas
 
 ### Website
 
-Each of your projects will have a website that looks like <https://info526-dataviz.github.io/project-01/>. You are not expected to change the styling of the website, but if you want to, you'll need to edit the `_quarto.yml` file in your repo. Feel free to google your way around it or ask on the discussion forum / office hours!
+Each of your projects will have a website that looks like <https://info-526-su24.github.io/project-01/>. You are not expected to change the styling of the website, but if you want to, you'll need to edit the `_quarto.yml` file in your repo. Feel free to Google your way around it or ask on the discussion forum / office hours!
 
 ## Repo organization
 
@@ -154,23 +158,23 @@ The following folders and files in your project repository:
 
 ## Grading
 
-+------------------------------------------------------------------------+--------------------------------------------------+
-| Total                                                                  | 100 pts                                          |
-+========================================================================+==================================================+
-| Proposal[^2]                                                           | 10 pts                                           |
-+------------------------------------------------------------------------+--------------------------------------------------+
-| Presentation[^3]                                                       | 30 pts                                           |
-|                                                                        |                                                  |
-|                                                                        | (25 pts from teaching team, 5 pts from audience) |
-+------------------------------------------------------------------------+--------------------------------------------------+
-| Write-up[^4]                                                           | 30 pts                                           |
-+------------------------------------------------------------------------+--------------------------------------------------+
-| Reproducibility, style, and organization[^5]                           | 10 pts                                           |
-+------------------------------------------------------------------------+--------------------------------------------------+
-| [Within team peer evaluation](https://forms.gle/AHBjXu68mhKs3XbJ7)[^6] | 15 pts                                           |
-+------------------------------------------------------------------------+--------------------------------------------------+
-| Between team peer evaluation[^7]                                       | 5 pts                                            |
-+------------------------------------------------------------------------+--------------------------------------------------+
++----------------------------------------------+--------------------------------------------------+
+| Total                                        | 100 pts                                          |
++==============================================+==================================================+
+| Proposal[^2]                                 | 10 pts                                           |
++----------------------------------------------+--------------------------------------------------+
+| Presentation[^3]                             | 30 pts                                           |
+|                                              |                                                  |
+|                                              | (25 pts from teaching team, 5 pts from audience) |
++----------------------------------------------+--------------------------------------------------+
+| Write-up[^4]                                 | 30 pts                                           |
++----------------------------------------------+--------------------------------------------------+
+| Reproducibility, style, and organization[^5] | 10 pts                                           |
++----------------------------------------------+--------------------------------------------------+
+| Within team peer evaluation[^6]              | 15 pts                                           |
++----------------------------------------------+--------------------------------------------------+
+| Between team peer evaluation[^7]             | 5 pts                                            |
++----------------------------------------------+--------------------------------------------------+
 
 [^2]: Your proposal score will also take into consideration how much you've improved your proposal based on peer feedback.
 

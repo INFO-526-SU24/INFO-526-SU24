@@ -1,5 +1,5 @@
 ---
-title: "INFO 526 Syllabus Spring 2024"
+title: "INFO 526 Syllabus Summer 2024"
 format: 
   html: default
   pdf: default

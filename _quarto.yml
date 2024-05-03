@@ -23,21 +23,21 @@ website:
     align: center
     tools:
       - icon: github
-        href: https://github.com/INFO-526-S24
+        href: https://github.com/INFO-526-SU24
         text: "GitHub organization"
       - icon: code-square
         href: https://posit.cloud/
         text: "Posit Cloud"
       - icon: person-fill
         text: "D2L"
-        href: https://d2l.arizona.edu/d2l/home/1334576
+        href: https://d2l.arizona.edu/d2l/home/1440391
         menu:
           - text: Announcements
-            href: https://datavizaz.slack.com
+            href: https://info526summer2024.slack.com
           - text: Zoom meetings
             href: https://arizona.zoom.us/my/gregchism
           - text: Gradebook
-            href: https://d2l.arizona.edu/d2l/home/1334576
+            href: https://d2l.arizona.edu/d2l/home/1440391
 
     style: docked
     search: true

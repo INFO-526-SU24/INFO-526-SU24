@@ -37,7 +37,7 @@ Select Yes by entering `1` and hitting enter. The key pair will be generated and
 ## Generating new RSA keyspair at: /Users/gchism/.ssh/id_ecdsa
 ## Your public key:
 ## 
-##  ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAD9IT/UOswCcWGBYvxvsx9Dmh4bfNhC5EOTAlEJvneJnNxwRIstIwUEr6Vi2WHtJsUjujD5JR/JqkLtR1fSsXaZMwHxsk3u0iWvlyug9qk9kOpkKt+vI9Nmh7xOctGh6yPLK83+b/E2TYFcZLK2YuvPfb31sAYB6nOeBeM/h3N9OZrBgg==  
+##  ecdsa-sha2-nistp521 AAAAE2VjZHNhLXNoYTItbmlzdHA1MjEAAAAIbmlzdHA1MjEAAACFBAD9IT/UOswCcWGBYvxvsx9Dmh4bfNhC5EOTAlEJvneJnNxwRIstIwUEr6Vi2WHtJsUjujD5JR/JqkLtR1fSsXaZMwHxsk3u0iWvlyug9qk9kOpkKt+vI9Nmh7xOctGh6yPLK83+b/E2TYFcZLK2Yuvagc31sAYB6nOeBeM/h3N9OZrBgg==  
 ```
 
 You will then be prompted to enter this public key to GitHub, via the provided link, you can also select Yes here to have the function open a browser window directly to this page.

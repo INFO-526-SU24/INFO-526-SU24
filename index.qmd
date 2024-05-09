@@ -30,10 +30,10 @@ d |>
   ) |>
   gt() |>
   fmt_date(date, date_style = 31) |>
-  sub_missing(columns = c(date, week, what, topic, prepare, due), missing_text = "") |>
+  sub_missing(columns = c(date, week, what, topic, video, prepare, due), missing_text = "") |>
   cols_align(
     align = "center", 
-    columns = c(week)
+    columns = c(week, video)
     ) |>
   cols_align(
     align = "right", 
@@ -50,18 +50,19 @@ d |>
       style = "solid"
     ),
     locations = cells_body(
-      columns = c(date, topic, prepare)
+      columns = c(date, video, prepare)
     )
   ) |>
   fmt_markdown(
-    columns = c(what, topic, prepare, due)
+    columns = c(what, topic, video, prepare, due)
   ) |>
   cols_width(
     week ~ px(20),
-    date ~ px(150), 
-    topic ~ px(550),
-    prepare ~ px(275),
-    due ~ px(190)
+    date ~ px(200), 
+    topic ~ px(800),
+    video ~ px(20),
+    prepare ~ px(200),
+    due ~ px(100)
   ) |>
   cols_label(
     what = "",
@@ -69,6 +70,7 @@ d |>
     date = "Date", 
     due = "Due",
     topic = "Topic",
+    video = "Video",
     prepare = "Prepare",
     due = "Due"
   ) |>

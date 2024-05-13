@@ -68,13 +68,13 @@ want to slice it, and dice it, and juice it, and process it, so we can plot it
 Which of the following (if any) are unfamiliar to you?
 :::
 
--   `distinct()`
--   `select()`, `relocate()`
--   `arrange()`, `arrange(desc())`
--   `slice()`, `slice_head()`, `slice_tail()`, `slice_sample()`
--   `filter()`
--   `mutate()`
--   `summarise()`, `count()`
+-   [`distinct()`](https://dplyr.tidyverse.org/reference/distinct.html)
+-   [`select()`](https://dplyr.tidyverse.org/reference/select.html), [`relocate()`](https://dplyr.tidyverse.org/reference/relocate.html)
+-   [`arrange()`](https://dplyr.tidyverse.org/reference/arrange.html), [`arrange(desc())`](https://dplyr.tidyverse.org/reference/desc.html)
+-   [`slice()`](https://dplyr.tidyverse.org/reference/slice.html), `slice_head()`, `slice_tail()`, `slice_sample()`
+-   [`filter()`](https://dplyr.tidyverse.org/reference/filter.html)
+-   [`mutate()`](https://dplyr.tidyverse.org/reference/mutate.html)
+-   [`summarise()`](https://dplyr.tidyverse.org/reference/summarise.html), [`count()`](https://dplyr.tidyverse.org/reference/count.html)
 
 ## Average cost of daily stay
 

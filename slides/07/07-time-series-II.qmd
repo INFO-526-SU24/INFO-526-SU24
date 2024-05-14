@@ -23,7 +23,6 @@ editor_options:
 # load packages
 library(countdown)
 library(tidyverse)
-library(lubridate)
 library(janitor)
 library(colorspace)
 library(broom)

@@ -14,35 +14,6 @@ editor_options:
   chunk_output_type: console
 ---
 
-# HW 1 lessons
-
-## Highlights
-
--   Review HW 1 issues, and show me you reviewed them by closing the issue.
-
--   DO NOT hard code paths! Use the **`here`** package to help with relative paths, if you need. e.g., `data <- read_csv(here("data", "data.csv"))`
-
--   Make sure that all packages are installed/loaded. I suggest the `pacman` workflow we saw before:
-
-```{r, eval=FALSE}
-if (!require("pacman")) 
-  install.packages("pacman")
-
-pacman::p_load(package1, package2, ...)
-pacman::p_load_gh("GitHubPackage1")
-```
-
-## HW 1 lessons learned cont...
-
-::: incremental
-1.  **Start [very]{.underline} early**. No late work exceptions will be made in the future
-2.  **Ask your peers**. I have been monopolized by a few individuals, which is not fair to the rest.
-    1.  Peers will likely have the answer
-    2.  Peers will likely get to the question before I will.
-3.  **Ask descriptive questions**. See [this page](https://datavizaz.org/course-support.html#how-to-ask-for-help) on asking effective questions.
-4.  **Please respect my work hours**. I do not reply to messages after 5pm on work days and at all on weekends.
-:::
-
 ## Setup {.smaller}
 
 ```{r}
@@ -525,9 +496,7 @@ ggplot(scientists_longer,
 What is the plot in the previous slide called?
 :::
 
-## Livecoding {.smaller}
-
-Reveal below for code developed during live coding session.
+## Practice {.smaller}
 
 -   Transform
 

@@ -21,7 +21,6 @@ editor_options:
 #| message: false
 
 # load packages
-library(countdown)
 library(tidyverse)
 library(ggrepel)
 library(patchwork)
@@ -590,4 +589,4 @@ Learn more at [https://patchwork.data-imaginist.com](https://patchwork.data-imag
 
 <br>
 
-Look into the source code at [https://github.com/INFO-526-S24/INFO526-S24/slides/](https://github.com/INFO-526-SU24/INFO-526-SU24/tree/main/slides).
+Look into the source code at [https://github.com/INFO-526-SU24/INFO526-SU24/slides/](https://github.com/INFO-526-SU24/INFO-526-SU24/tree/main/slides).

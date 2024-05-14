@@ -14,6 +14,35 @@ editor_options:
   chunk_output_type: console
 ---
 
+# HW 1 lessons
+
+## Highlights
+
+-   Review HW 1 issues, and show me you reviewed them by closing the issue.
+
+-   DO NOT hard code paths! Use the **`here`** package to help with relative paths, if you need. e.g., `data <- read_csv(here("data", "data.csv"))`
+
+-   Make sure that all packages are installed/loaded. I suggest the `pacman` workflow we saw before:
+
+```{r, eval=FALSE}
+if (!require("pacman")) 
+  install.packages("pacman")
+
+pacman::p_load(package1, package2, ...)
+pacman::p_load_gh("GitHubPackage1")
+```
+
+## HW 1 lessons learned cont...
+
+::: incremental
+1.  **Start [very]{.underline} early**. No late work exceptions
+2.  **Ask your peers**.
+    1.  Peers will likely have the answer
+    2.  Peers will likely get to the question before I will.
+3.  **Ask descriptive questions**. See [this page](https://datavizaz.org/course-support.html#how-to-ask-for-help) on asking effective questions.
+4.  **Please respect my work hours**. I do not reply to messages after 5pm on work days and at all on weekends.
+:::
+
 ## Setup {.smaller}
 
 ```{r}
@@ -263,6 +292,28 @@ tuc_2022 |>
 ```
 
 ## Livecoding {.smaller}
+
+```{r}
+#| code-fold: true
+#| code-summary: Setup
+#| eval: false
+aqi_levels <- tribble(
+  ~aqi_min, ~aqi_max, ~color,    ~level,
+  0,        50,       "#D8EEDA", "Good",
+  51,       100,      "#F1E7D4", "Moderate",
+  101,      150,      "#F8E4D8", "Unhealthy for sensitive groups",
+  151,      200,      "#FEE2E1", "Unhealthy",
+  201,      300,      "#F4E3F7", "Very unhealthy",
+  301,      400,      "#F9D0D4", "Hazardous"
+)
+
+tuc_2022 <- read_csv("https://raw.githubusercontent.com/INFO-526-SU24/INFO-526-SU24/main/slides/06/data/tucson/ad_aqi_tracker_data-2022.csv",
+                     na = c(".", ""))
+
+tuc_2022 <- tuc_2022 |>
+  janitor::clean_names() |>
+  mutate(date = mdy(date))
+```
 
 Reveal below for code developed during live coding session.
 

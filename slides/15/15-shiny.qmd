@@ -224,29 +224,25 @@ shinyApp(
 :::
 :::
 
-## Data: Ask a manager
+## Data: Health expenditure vs. life expectancy {.smaller}
 
-Source: Ask a Manager Survey via [TidyTuesday](https://github.com/rfordatascience/tidytuesday/tree/master/data/2021/2021-05-18)
+> Source: [World Bank](https://databank.worldbank.org/) and [googleCharts](https://github.com/jcheng5/googleCharts)
 
-> This data does not reflect the general population; it reflects Ask a Manager readers who self-selected to respond, which is a very different group (as you can see just from the demographic breakdown below, which is very white and very female).
-
-Some findings [here](https://www.askamanager.org/2021/05/some-findings-from-24000-peoples-salaries.html).
-
-## Data: `manager`
+**Data: `healthexp.Rds`**
 
 ```{r message = FALSE}
-manager <- read_csv(here::here("slides/15", "data/survey.csv"))
-manager
+health <- readRDS(here::here("slides/15", "data/healthexp.Rds"))
+health |> glimpse()
 ```
 
-## Ultimate goal
+## Ultimate goal {.smaller}
 
 ::: {.medium .center-align}
-[https://minecr.shinyapps.io/manager-survey](https://minecr.shinyapps.io/manager-survey/)
+<https://shiny.posit.co/r/gallery/interactive-visualizations/google-charts/>
 :::
 
 ```{r echo = FALSE}
-knitr::include_app("https://minecr.shinyapps.io/manager-survey/", height ="550px")
+knitr::include_app("https://gallery.shinyapps.io/182-google-charts/", height ="550px")
 ```
 
 # Interactive reporting with Shiny
@@ -254,12 +250,5 @@ knitr::include_app("https://minecr.shinyapps.io/manager-survey/", height ="550px
 ## Livecoding
 
 ::: task
-Code along in `manager-survey/app.R`. We will do part 1 today, parts 2-3 Monday.
+Code along in [`shiny-examples/182-google-charts/app.R`](https://github.com/rstudio/shiny-examples/blob/main/182-google-charts/app.R).
 :::
-
-<br>
-
-Highlights:
-
--   Data pre-processing
--   Basic reactivity

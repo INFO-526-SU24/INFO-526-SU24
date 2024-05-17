@@ -533,12 +533,12 @@ Source: Schwabish, Jonathan A. "Ten Guidelines for Better Tables." Journal of Be
 
 ## Other packages
 
--   `knitr::kable()`: "Cheapest" pretty tables in R Markdown
+-   [`knitr::kable()`](https://cran.r-project.org/web/packages/kableExtra/vignettes/awesome_table_in_html.html): "Cheapest" pretty tables in R Markdown
 -   Other (than HTML) outputs:
     -   LaTeX/PDF: [**kableExtra**](https://haozhu233.github.io/kableExtra/)
     -   Word: [**flextable**](https://davidgohel.github.io/flextable/)
--   gtsummary: For summarizing statistical output with **gt**
--   Interactivity: We will work with these when we learn Shiny! - [**DT**](https://rstudio.github.io/DT/) - [**reactable**](https://glin.github.io/reactable/)
+-   [gtsummary](https://www.danieldsjoberg.com/gtsummary/): For summarizing statistical output with **gt**
+-   Interactivity: [**DT**](https://rstudio.github.io/DT/) - [**reactable**](https://glin.github.io/reactable/)
 
 ## Table inspiration
 
@@ -546,4 +546,4 @@ Source: Schwabish, Jonathan A. "Ten Guidelines for Better Tables." Journal of Be
 
 -   2022 Posit table contest: [Winners of the 2022 Table Contest](https://posit.co/blog/winners-of-the-2022-table-contest/)
 
-    -   Look out for 2023 table contest anouncement!
+    -   2024 Table Contest ended in May: <https://posit.co/blog/announcing-the-2024-table-contest/>

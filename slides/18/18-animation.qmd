@@ -1,6 +1,6 @@
 ---
 title: Animation
-subtitle: Lecture 18x
+subtitle: Lecture 18
 title-slide-attributes:
   data-background-image: ../vizdata-bg.png
   data-background-size: 800px, cover
@@ -688,7 +688,7 @@ ggplot(
 
 ## A not-so-simple example {.smaller}
 
-We can just as easily turn it into an animation, transitioning between dataset states!
+We can just as easily animate, transitioning between dataset states!
 
 ::: columns
 ::: {.column width="50%"}
@@ -753,11 +753,11 @@ Sometimes you need more frames, sometimes fewer
 
 ## Considerations in making effective animations
 
--   Pace: speed of animation Quick animations may be hard to follow. Slow animations are boring and tedious.
+-   Pace: speed of animation - Quick animations may be hard to follow. Slow animations are boring and tedious.
 
 . . .
 
--   Perplex: amount of information It is easy for animations to be overwhelming and confusing. Multiple simple animations can be easier to digest.
+-   Perplex: amount of information - It is easy for animations to be overwhelming and confusing. Multiple simple animations can be easier to digest.
 
 . . .
 

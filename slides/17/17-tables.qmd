@@ -52,17 +52,21 @@ knitr::opts_chunk$set(
 ::: {.column width="50%"}
 **Tables:**
 
+::: incremental
 -   To look up or compare individual values
 -   To display precise values
 -   To include detail and summary values
 -   To display quantitative values including more than one unit of measure
 :::
+:::
 
 ::: {.column width="50%"}
 **Plots:**
 
+::: incremental
 -   To reveal relationships among whole sets of values
 -   To display a message that is contained in the shape of the values (e.g., patterns, trends, exceptions)
+:::
 :::
 :::
 
@@ -216,18 +220,15 @@ BA_degrees_other <- BA_degrees |>
 In a table?
 :::
 
-```{r echo = FALSE, results='asis'}
+```{r}
+#| echo: false
 BA_degrees_other |>
   pivot_wider(names_from = field, values_from = perc) |>
   rename(Year = year) |>
-  gt() |>
+  gt()  |>
   cols_align(
     align = c("right"),
     columns = everything()
-    ) |>
-  cols_width(
-    Year ~ px(50),
-    everything() ~ px(140)
   ) |>
   tab_style(
     style = "padding-top:5px;padding-bottom:5px;",
@@ -247,13 +248,17 @@ BA_degrees_other |>
   )
 ```
 
-## 
+##  {.smaller}
 
 ::: task
 Or in a plot?
 :::
 
-```{r degrees-years-plot, echo = FALSE, out.width = "100%", fig.asp = 0.5}
+```{r}
+#| label: degrees-years-plot
+#| echo: false
+#| fig-asp: 0.5
+#| out-width: 100%
 degrees_years_plot <- ggplot(BA_degrees_other, aes(x = year, y = perc, 
                              group = field, 
                              color = field)) +
@@ -356,10 +361,6 @@ degrees_years_plot
 
 ## 
 
-```{r echo = FALSE, out.width = "100%", fig.align = "center"}
-knitr::include_graphics("images/why-not-both.jpg")
-```
-
 ## Add visualizations to your table
 
 Example: Add **sparklines** to display trend alongside raw data
@@ -435,7 +436,7 @@ BA_degrees_other |>
   )
 ```
 
-## 
+## {.smaller}
 
 ::: task
 Livecoding: Recreate this table of popular Bachelor's degrees awarded over time.

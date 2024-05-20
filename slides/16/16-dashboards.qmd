@@ -93,7 +93,7 @@ editor_options:
     ::: incremental
     -   🌮 Good tacos in minimal time
 
-    -   🚹 🚺 Individuals with unequal pay
+    -   🚹 🚺 Individuals with equal pay
 
     -   🦕 Interesting and educational videos
     :::
@@ -326,12 +326,12 @@ format:
 ```
 
 ```` markdown
-## Column {height=60%}
+## Column {width=60%}
 
 ```{R}
 ```
 
-## Column {height=40%}
+## Column {width=40%}
 
 ```{R}
 ```
@@ -359,12 +359,9 @@ format:
 ```
 
 ```` markdown
-## Column {height=60%}
 
 ```{R}
 ```
-
-## Column {height=40%}
 
 ```{R}
 ```
@@ -513,9 +510,9 @@ This text will be displayed within a card
 
 The above and more can be found [here](https://quarto.org/docs/dashboards/layout.html)!
 
-## Next time
+## Live coding
 
 ```{r}
 #| echo: false
-knitr::include_app("https://mine-cetinkaya-rundel.github.io/ld-dashboard/", height ="600px")
+knitr::include_app("https://colorado.posit.co/rsc/nz-quakes/quakes.html", height ="600px")
 ```

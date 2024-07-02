@@ -1,6 +1,6 @@
 institute: "University of Arizona <br> INFO 526 - Summer 2024"
 author: "Dr. Greg Chism"
-footer: "[🔗 datavizaz.org](https://datavizaz.org/)"
+footer: "[🔗 datavizaz-su24](https://datavizaz-su24.netlify.app)"
 logo: "../logo.png"
 format:
   revealjs:

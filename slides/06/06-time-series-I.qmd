@@ -89,7 +89,7 @@ knitr::include_graphics("images/aqi-levels.png")
 ```
 
 ::: aside
-Source: https://www.airnow.gov/aqi-basics
+Source: <https://www.airnow.gov/aqi/aqi-basics/>
 :::
 
 ## AQI levels
